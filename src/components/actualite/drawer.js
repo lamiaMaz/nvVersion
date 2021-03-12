@@ -36,6 +36,8 @@ const useStyles = makeStyles((theme) => ({
   title: {
     width: 100,
     marginBottom:10,
+       color: black,
+
   },
  hide:{
 display:'none',
