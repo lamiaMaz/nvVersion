@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     width: 100,
     marginBottom:10,
-    color: black,
+    color: 'black',
 
   },
  hide:{
@@ -68,9 +68,12 @@ display:'none',
   name:{
     marginTop: 12 ,
     marginLeft: 10 ,
+    marginBottom:18,
     cursor: 'pointer',
+    fontSize:17,
     color:'black',
-    fontWeight:500
+    fontWeight:500,
+    height:20,
   },
   toolbar: {
     display: 'flex',
@@ -218,7 +221,8 @@ const NavBar= () => {
                    <Tooltip disableFocusListener title="Profil">
 
                         <Button style={{textTransform:'lowercase'}}>
-                           <Avatar alt="Remy Sharp" src={process.env.PUBLIC_URL + '/images/avatar.jpg'} style={{width: 40, height: 40}} />
+                           <Avatar alt="Remy Sharp" src={process.env.PUBLIC_URL + '/images/avatar.jpg'}
+                            style={{width: 40, height: 40}} />
                             <h6 href="#text-buttons" className={classes.name}> Lamia </h6>
                         </Button>
 
@@ -228,7 +232,7 @@ const NavBar= () => {
                   <Tooltip disableFocusListener title="notifications">
 
                      <IconButton aria-label="show new notifications"  button onClick={handleClick1} aria-controls="notification"
-                     style={{color:'#50b5ff',paddingTop: 0,paddingBottom: 0,height: 45,top: 7,}}>
+                     style={{color:'#50b5ff',paddingTop:0,paddingBottom: 0,height: 45,top:12,}}>
                          
                           {/********notifications number*********/}
 
@@ -320,7 +324,7 @@ const NavBar= () => {
                      <IconButton aria-label="show new mails"
                      
                      button onClick={handleClick2} aria-controls="messages"
-                     style={{color:'#50b5ff',paddingTop: 0,paddingBottom: 0,height: 45,top: 7,}}>
+                     style={{color:'#50b5ff',paddingTop: 0,paddingBottom: 0,height: 45,top: 12,}}>
                           
                            {/********messages number *********/}
 
@@ -417,7 +421,8 @@ const NavBar= () => {
 
                   <Tooltip disableFocusListener title="Déconnexion">
 
-                        <IconButton aria-label="" style={{color:'#50b5ff',paddingTop: 0, paddingBottom: 0,height: 45,top: 7,}}>
+                        <IconButton aria-label=""
+                         style={{color:'#50b5ff',paddingTop: 0, paddingBottom: 0,height: 45,top: 12,}}>
                       
                             < PowerSettingsNewIcon />
                       

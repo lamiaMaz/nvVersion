@@ -130,7 +130,7 @@ const Discussions = () => {
           {open ? <ChevronRightIcon  /> : <ChevronLeftIcon  />}
           
           </Button>
-          <h6 style={{marginLeft: 43,marginTop: 15}}
+          <h6 style={{marginLeft: 43,marginTop: 15,fontSize:15}}
           className={clsx( {
             [classes.hide]: !open,
           })}
