@@ -45,7 +45,7 @@ export default function AddPub() {
       <Card style={{ marginBottom:20,}}>
       
       <CardContent>
-      <h6 style={{color:'black'
+      <h6 style={{color:'black',fontSize:15,marginTop: 0,marginBottom: 5,
         }}>Créer un poste</h6>
       <Divider/>
         <Box display="flex"alignItems="center"
