@@ -1,25 +1,47 @@
 import React from 'react'
-import { makeStyles,withStyles, Card,CardMedia,CardContent,CardActions,Collapse,Divider,MenuItem,InputAdornment,Link,
-  Avatar,IconButton,Typography ,Menu,ListItemIcon,ListItemText,FormControlLabel,TextField,Box } from '@material-ui/core';
+import { makeStyles,withStyles, Card,CardMedia,CardContent,CardActions,Collapse,Divider,MenuItem,InputAdornment,
+  Link,List,ListItem,
+  Avatar,IconButton,Typography ,Menu,ListItemIcon,ListItemText,TextField,Box } from '@material-ui/core';
 import clsx from 'clsx';
 import ShareIcon from '@material-ui/icons/Share';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import Checkbox from '@material-ui/core/Checkbox';
-import Favorite from '@material-ui/icons/Favorite';
-import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import ChatIcon from '@material-ui/icons/Chat';
 import Commentaire from './commentaire'
 import SaveAltOutlinedIcon from '@material-ui/icons/SaveAltOutlined';
 import ClearRoundedIcon from '@material-ui/icons/ClearRounded';
 import {MdFavorite} from 'react-icons/md'
-
+import Dialog from '@material-ui/core/Dialog';
+import MuiDialogTitle from '@material-ui/core/DialogTitle';
+import MuiDialogContent from '@material-ui/core/DialogContent';
+import CloseIcon from '@material-ui/icons/Close';
+import { Button } from 'bootstrap';
 
                              {/**css de page */}
 
 const useStyles = makeStyles((theme) => ({
     root: {
+      '& > *': {
       
+       
+        height:40,
+       paddingTop:15,
+       paddingBottom:15,
+        borderRadius:10,
+       
+      },
+
+      '& .MuiLink-underlineHover':{
+       
+        '&:hover':{
+        textDecoration:'none',
+       }
+     
+
     },
+    
+     
+    },
+
     media: {
       height: 0,
       paddingTop: '56.25%', 
@@ -35,14 +57,37 @@ const useStyles = makeStyles((theme) => ({
       transform: 'rotate(180deg)',
     },
   
-    '& .MuiInputBase-input':{
-      height:40,
-        },
+   
     hide:{
       display:'none',
        },
-  }));
 
+       like:{
+        marginLeft:10,
+        cursor:'Pointer',
+          '&:hover':{
+          color:'#50b5ff',
+         },
+        },
+        buttonAbn:{
+          backgroundColor:'#50b5ff',
+          color:'white',
+          cursor:'Pointer',
+          position: 'relative',
+          left: 60,
+          paddingTop: 5,
+          paddingBottom: 5,
+          borderRadius: 15,
+          width: 95,
+          paddingLeft: 15,
+                '&:hover':{
+            backgroundColor:'#3883b78a',
+
+         },
+        },
+
+  })); 
+ 
   const StyledMenu = withStyles({
     paper: {
       border: '1px solid #d3d4d5',
@@ -64,10 +109,55 @@ const useStyles = makeStyles((theme) => ({
   ));
   
   const StyledMenuItem = withStyles((theme) => ({
-    root: {
-      
-    },
+   
+    
   }))(MenuItem);
+
+
+  const styles = (theme) => ({
+    root: {
+      margin: 0,
+      padding: theme.spacing(1),
+     
+    },
+  
+    closeButton: {
+      position: 'absolute',
+      right: theme.spacing(1),
+      top:0,
+      color: theme.palette.grey[500],
+    },
+    titre:{
+      fontSize:16,
+      fontWeight:600,
+      marginBottom:10,
+    },
+  });
+  const DialogTitle = withStyles(styles)((props) => {
+    const { children, classes, onClose, ...other } = props;
+    return (
+      <MuiDialogTitle disableTypography className={classes.root} {...other}>
+        <Typography className={classes.titre} variant="h6">{children}</Typography>
+        {onClose ? (
+          <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+            <CloseIcon />
+          </IconButton>
+        ) : null}
+      </MuiDialogTitle>
+    );
+  });
+  
+  const DialogContent = withStyles((theme) => ({
+    root: {
+      padding: theme.spacing(1),
+      width: 350,
+       
+    },
+  }))(MuiDialogContent);
+  
+ 
+  
+
 
                     {/**debut de fonction */}
 
@@ -77,6 +167,8 @@ export default function Publication() {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const [Masquer, setMasquer] = React.useState(true);
+  const [isRed, setIsRed] = React.useState(false)
+  const [open, setOpen] = React.useState(false);
 
 
     
@@ -97,6 +189,12 @@ export default function Publication() {
       setAnchorEl(null);
     };
       
+    const modalOpen = () => {
+      setOpen(true);
+    };
+    const modalClose = () => {
+      setOpen(false);
+    };
     return (
         <div>
 
@@ -204,13 +302,93 @@ export default function Publication() {
 
 
 
+              
+                                  
+                                 
+                                  
+                                  <MdFavorite  style={{fontSize:'x-large' ,marginLeft:5 }}
+                                   onClick={() => setIsRed(!isRed)} 
+                                  color={isRed ? 'red' : 'black'}
+                                
+                                  />
 
-               <FormControlLabel
+                                   <a
+                                     className={classes.like}
+                                     component="button"
+                                     onClick={modalOpen} 
+                                    
+                                    >
+                                     100 J'aime</a>
 
-                        control={<Checkbox icon={<FavoriteBorder style={{ color:'red'}}/>} 
-                        checkedIcon={<Favorite />} name="checkedH" />}
-                        label="J'adore"
-                        />
+                                
+                              {/**liste des perssones qui aiment la pub */}
+
+                              <Dialog  onClose={modalClose} aria-labelledby="customized-dialog-title" open={open}>
+                                <DialogTitle id="customized-dialog-title" onClose={modalClose}>
+                                 Mentions j'aime
+                                </DialogTitle >
+                                <DialogContent  dividers>
+                                  <List>
+                                    <ListItem >
+
+                                    <ListItemIcon>
+
+                                        <Avatar alt="Remy Sharp" src={process.env.PUBLIC_URL + '/images/d5.jpg'}  />
+                                        
+                                        </ListItemIcon>
+
+                                        <Typography style={{fontSize:16,  }}>  <a >Anna Sthesia</a> <br/></Typography>
+                                        <a
+                                        className={classes.buttonAbn}
+                                          component="button"
+                                        >S'abonner</a>
+
+                                    </ListItem>
+
+
+                                    <ListItem >
+                                      
+                                    <ListItemIcon>
+
+                                        <Avatar alt="Remy Sharp" src={process.env.PUBLIC_URL + '/images/d5.jpg'}  />
+                                        
+                                        </ListItemIcon>
+
+                                        <Typography style={{fontSize:16,  }}>  <a >Anna Sthesia</a> <br/></Typography>
+                                        <a
+                                        className={classes.buttonAbn}
+                                          component="button"
+                                        >S'abonner</a>
+
+                                    </ListItem>
+                                    <ListItem >
+                                      
+                                    <ListItemIcon>
+
+                                        <Avatar alt="Remy Sharp" src={process.env.PUBLIC_URL + '/images/d5.jpg'}  />
+                                        
+                                        </ListItemIcon>
+
+                                        <Typography style={{fontSize:16,  }}>  <a >Anna Sthesia</a> <br/></Typography>
+                                        <a
+                                        className={classes.buttonAbn}
+                                          component="button"
+                                        >Contacter</a>
+
+                                    </ListItem>
+                                  </List>
+                                </DialogContent>
+                              
+      </Dialog>
+
+
+
+                             
+
+
+
+
+
 
                         <IconButton aria-label="share" className={clsx(classes.expand, {
                                 [classes.expandOpen]: expanded, })}
@@ -250,8 +428,9 @@ export default function Publication() {
                                       <InputAdornment position="end">
                                         
                                             <Link
-                                          component="button"
-                                          variant="body2" >
+                                            className={classes.root}
+                                             component="button"
+                                           >
                                           publier
                                         </Link>
 

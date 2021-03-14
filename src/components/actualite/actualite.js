@@ -38,23 +38,23 @@ function Actualite() {
 
         <Box display="flex" >
 
-        <Grid item xs={2} >
+        <Grid item xs={1} >
         <NavBar/>
         </Grid>
 
-        <Grid item xs={9} style={{ marginTop:110 }}
+        <Grid item xs={12} style={{ marginTop:100 }} 
         >
           <Box display="flex" >
           <Grid item xs={8}  style={{ marginRight: 40 }}>
           <AddPub/>
           <Publication/>
         </Grid>
-        <Grid item xs={4} >
+        <Grid item xs={3} >
        <Suggestions/>
         </Grid>
         </Box>
         </Grid>
-        <Grid item xs={2} >
+        <Grid item xs={1} >
         
         <Discussions/>        </Grid>
         </Box>

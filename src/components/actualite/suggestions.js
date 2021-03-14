@@ -21,6 +21,8 @@ const useStyles = makeStyles((theme) => ({
 export default function Suggestions() {
     const classes = useStyles();
     const [isBlue, setIsBlue] = React.useState(false)
+
+    
     return (
         <div>
 
@@ -91,14 +93,21 @@ export default function Suggestions() {
                           <img  src={process.env.PUBLIC_URL + '/images/s1.jpg'} 
                                 style={{borderRadius: 5,maxWidth: '100%',height: 'auto'}} />
                         
-                        <IconButton aria-label="" style={{ marginLeft:40, marginRight: 10, borderRadius:5, }}>
+                        <IconButton aria-label="" style={{ marginLeft:40, marginRight: 10,borderRadius:5,}} 
+                              >
 
-                        <AiFillLike  style={{  marginRight: 10,}}
-                                   onClick={() => this.setIsBlue(!isBlue)} 
+                                  
+                                 
+                                  
+                                  <AiFillLike  style={{  marginRight: 10,}}
+                                   onClick={() => setIsBlue(!isBlue)} 
                                   color={isBlue ? 'blue' : 'black'}
                                 
                                   />
-                              <Typography  style={{ color:'#50b5ff',}}>  Aimer la Page</Typography>
+
+                                   
+
+                                  <Typography  style={{ color:'#50b5ff', }}>  Aimer la Page</Typography>
 
                          </IconButton>
 

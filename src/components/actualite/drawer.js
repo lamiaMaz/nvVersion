@@ -1,8 +1,8 @@
 import React from 'react';
 import clsx from 'clsx';
-import { makeStyles,Box, useTheme ,Drawer,AppBar,Toolbar,List,CssBaseline,ListItemText,Paper,StylesProvider,
-IconButton,InputBase,ListItemIcon,ListItem,Badge,Avatar,Button,Tooltip,withStyles,Divider,MenuItem,Link,
- Typography ,Menu, Card, MenuList } from '@material-ui/core';
+import { makeStyles,Box, useTheme ,Drawer,AppBar,Toolbar,List,CssBaseline,StylesProvider,
+IconButton,InputBase,ListItemIcon,ListItem,Badge,Avatar,Button,Tooltip,MenuItem,Link,
+ Typography ,Menu,} from '@material-ui/core';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import {AiFillMessage} from "react-icons/ai";
 import {FaHome} from "react-icons/fa";
@@ -11,7 +11,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import {CgProfile} from "react-icons/cg";
 import MenuIcon from '@material-ui/icons/Menu';
-//import  "./drawer.css" ;
+
 
 
 
@@ -21,6 +21,9 @@ const drawerWidth = 280;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    '& .MuiList-padding':{
+      paddingTop:0,
+     }
   },
  
   appBar: {
@@ -128,7 +131,7 @@ display:'none',
     overflowX:'hidden',
   },  
   drClose:{
-    width:93,
+    width:65,
     backgroundColor:'#50b5ff',
     overflowX:'hidden',
 
@@ -343,6 +346,7 @@ const NavBar= () => {
 
 
                         <Menu  
+                        className={classes.root}
 
                         id="messages"
                         anchorReference="anchorPosition"
@@ -457,18 +461,12 @@ const NavBar= () => {
           <List style={{marginTop:90}}>
 
 
-              <ListItem button style={{paddingLeft: 16,paddingRight: 16,right: 5,left:5,marginBottom:15}}>
+              <ListItem button style={{paddingLeft: 16,paddingRight: 16,right: 5,marginBottom:10}}>
 
                   <ListItemIcon  style={{color:'#fff',display: 'block',marginRight: 10}}>
 
-                      <FaHome style={{marginLeft: 10, marginBottom: 5,fontSize: 21}}/>
+                      <FaHome style={{marginLeft: 10, marginBottom: 5,fontSize: 22}}/>
 
-                      <Typography style={{color:'#fff',fontSize: 15}} 
-                      className={clsx( {
-                        [classes.hide]: open,
-                      })}
-                      
-                      >Home</Typography>
                   </ListItemIcon >
 
                       <Typography style={{color:'#fff',fontSize: 18}}
@@ -480,16 +478,11 @@ const NavBar= () => {
 
 
 
-              <ListItem button style={{paddingLeft: 15,paddingRight: 16,right: 5,marginBottom:15}}>
+              <ListItem button style={{paddingLeft: 16,paddingRight: 16,right: 5,marginBottom:10}}>
 
                       <ListItemIcon  style={{color:'#fff',display: 'block',marginRight: 10}}>
-                      <AiFillMessage style={{marginLeft: 23, marginBottom: 5,fontSize: 21}}/>
-                      <Typography style={{color:'#fff',fontSize: 15}} 
-                      className={clsx( {
-                        [classes.hide]: open,
-                      })}
-                      
-                      >Messages</Typography>
+                      <AiFillMessage style={{marginLeft: 10, marginBottom: 5,fontSize: 22}}/>
+                     
                       </ListItemIcon >
                       <Typography style={{color:'#fff',fontSize: 18}}
                       className={clsx( {
@@ -504,18 +497,11 @@ const NavBar= () => {
 
 
 
-              <ListItem button style={{paddingLeft: 16,paddingRight: 16,right: 5,marginBottom:15}}>
+              <ListItem button style={{paddingLeft: 16,paddingRight: 16,right: 5,marginBottom:10}}>
 
                   <ListItemIcon  style={{color:'#fff',display: 'block',marginRight: 10}}>
 
-                      <HiUserGroup style={{marginLeft: 20, marginBottom: 5,fontSize: 21}}/>
-
-                      <Typography style={{color:'#fff',fontSize: 15}} 
-                      className={clsx( {
-                        [classes.hide]: open,
-                      })}
-                      
-                      >Groupes</Typography>
+                      <HiUserGroup style={{marginLeft: 10, marginBottom: 5,fontSize: 22}}/>
 
                   </ListItemIcon >
 
@@ -532,18 +518,13 @@ const NavBar= () => {
 
 
 
-              <ListItem button style={{paddingLeft: 30,paddingRight: 16,right: 5,marginBottom:15}}>
+              <ListItem button style={{paddingLeft: 16,paddingRight: 16,right: 5,marginBottom:10}}>
 
                  <ListItemIcon  style={{color:'#fff',display: 'block',marginRight: 10}}>
 
-                      <CgProfile style={{marginLeft: 8, marginBottom: 5,fontSize: 21}}/>
+                      <CgProfile style={{marginLeft: 10, marginBottom: 5,fontSize: 22}}/>
 
-                      <Typography style={{color:'#fff',fontSize: 15 }} 
-                      className={clsx( {
-                        [classes.hide]: open,
-                      })}
-                      
-                      >Profil</Typography>
+                     
                       
                 </ListItemIcon >
 

@@ -1,20 +1,18 @@
 import React from 'react';
 import clsx from 'clsx';
-import { makeStyles,useTheme,IconButton,  Avatar,Button,Typography,Box,ClickAwayListener,Badge ,withStyles } from '@material-ui/core';
+import { makeStyles,useTheme,InputBase,  Avatar,Button,Typography,Box,ClickAwayListener,Badge ,withStyles } from '@material-ui/core';
 import Drawer from '@material-ui/core/Drawer';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
+
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import SearchIcon from '@material-ui/icons/Search';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'; 
 
-const drawerWidth = 240;
+const drawerWidth = 230;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,9 +35,7 @@ const useStyles = makeStyles((theme) => ({
   disButton: {
     marginRight: theme.spacing(2),
   },
-  hide: {
-    display: 'none',
-  },
+  
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
@@ -47,8 +43,8 @@ const useStyles = makeStyles((theme) => ({
     
   },
   disc:{
-    height:500,
-    top:100,
+   
+    top:60,
   },
   drawerOpen: {
     width: drawerWidth,
@@ -70,6 +66,45 @@ const useStyles = makeStyles((theme) => ({
   },
   hide: {
     display: 'none',
+  },
+  search: {
+    flexGrow: 0.3,
+    
+    position: 'relative',
+    borderRadius: 15,
+    backgroundColor:' #9bafbd24',
+    border:'1px solid #f1f1f1',
+    bottom: 5,
+   
+    [theme.breakpoints.up('sm')]: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    },
+  },
+  searchIcon: {
+    padding: theme.spacing(0, 2),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color:'#04043885',
+  },
+  inputRoot: {
+    color: '#a09e9e',
+  },
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 0),
+    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      width: '12ch',
+      '&:focus': {
+        width: '20ch',
+      },
+    },
   },
   
 }));
@@ -135,11 +170,36 @@ const Discussions = () => {
             [classes.hide]: !open,
           })}
           
-          >Amis en ligne </h6></Box>
+          >Amis en ligne </h6>
+          
+                       
+          
+          </Box>
+
+                          {/********barre de recherche *********/}
+                          <div className={clsx( {
+                            [classes.hide]: !open,
+                          })}>
+
+                          <div className={classes.search}
+                          
+                          >
+
+                <div className={classes.searchIcon}>
+                      <SearchIcon  />
+                </div>
+
+                <InputBase
+                    placeholder="Search…"
+                  classes={{root: classes.inputRoot,input: classes.inputInput,}}
+                  inputProps={{ 'aria-label': 'search' }}
+                    />
+
+                </div></div>
         <List  style={{ overflowX:'hidden'}}>
       
 
-
+                    
 
 
         <ListItem button style={{ marginBottom:20

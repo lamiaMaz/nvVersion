@@ -20,11 +20,11 @@ const useStyles = makeStyles((theme) => ({
         height:50,
        paddingTop:15,
        paddingBottom:8,
-        borderRadius:20,
         marginLeft: 20,
+        top: 15,
       },
       '& .PrivateNotchedOutline-root-32':{
-border:0,
+         border:0,
       },
     },
    
