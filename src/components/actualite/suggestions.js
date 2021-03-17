@@ -1,5 +1,5 @@
 import React from 'react'
-import { makeStyles,Typography,Divider,Box,Card,CardContent,} from '@material-ui/core';
+import { makeStyles,Typography,Divider,Box,Card,CardContent,Hidden} from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import {AiFillLike} from 'react-icons/ai'
@@ -24,6 +24,7 @@ export default function Suggestions() {
 
     
     return (
+        <Hidden only={['sm', 'xs','md']}>
         <div>
 
 
@@ -169,5 +170,6 @@ export default function Suggestions() {
 
 
         </div>
+        </Hidden>
     )
 }

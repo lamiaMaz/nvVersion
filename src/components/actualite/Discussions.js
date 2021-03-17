@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import { makeStyles,useTheme,InputBase,  Avatar,Button,Typography,Box,ClickAwayListener,Badge ,withStyles } from '@material-ui/core';
+import { makeStyles,useTheme,InputBase,  Avatar,Button,Typography,Box,Badge ,withStyles } from '@material-ui/core';
 import Drawer from '@material-ui/core/Drawer';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -134,7 +134,7 @@ const Discussions = () => {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      
+     
       <Drawer
       
         className={classes.drawer}
@@ -309,6 +309,7 @@ const Discussions = () => {
         </List>
        
       </Drawer>
+   
     </div>
   );
 }

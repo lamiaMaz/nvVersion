@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
-import { makeStyles,Box, useTheme ,Drawer,AppBar,Toolbar,List,CssBaseline,StylesProvider,
-IconButton,InputBase,ListItemIcon,ListItem,Badge,Avatar,Button,Tooltip,MenuItem,Link,
+import { makeStyles,Box, useTheme ,Drawer,AppBar,Toolbar,List,CssBaseline,StylesProvider, BottomNavigation,Collapse,
+IconButton,InputBase,ListItemIcon,ListItem,Badge,Avatar,Button,Tooltip,MenuItem,Link,Hidden,BottomNavigationAction,
  Typography ,Menu,} from '@material-ui/core';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import {AiFillMessage} from "react-icons/ai";
@@ -11,13 +11,13 @@ import SearchIcon from '@material-ui/icons/Search';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import {CgProfile} from "react-icons/cg";
 import MenuIcon from '@material-ui/icons/Menu';
-
+import { BrowserRouter, Switch, Route} from 'react-router-dom'
 
 
 
                          {/************css de page ***********/}
-const drawerWidth = 280;
-
+const drawerWidth = 300;
+ 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -101,6 +101,20 @@ display:'none',
     marginLeft: theme.spacing(1),
     },
   },
+  searchC: {
+    
+    height: 35,
+    position: 'relative',
+    borderRadius: 15,
+    backgroundColor:'#80808029',
+    border:'1px solid #f1f1f1',
+    bottom: 5,
+    left: 30,
+    width: 300,
+    [theme.breakpoints.up('sm')]: {
+    marginLeft: theme.spacing(1),
+    },
+  },
   searchIcon: {
     padding: theme.spacing(0, 2),
     height: '100%',
@@ -139,7 +153,24 @@ display:'none',
   liste:{
   paddingTop:0,
   },
-  
+  bottomNavBar:{
+    top: 55,
+    position:'fixed',
+    width:'100%',
+    left: 0,
+    height: 100,
+    marginTop: 0,
+    paddingTop: 15,
+    paddingBottom: 20,
+    display: 'block',
+  },
+  grow: {
+    flexGrow: 1,
+  },
+  navigationBtn:{
+   
+    fontSize:27,
+  },
 }));
  
 
@@ -153,7 +184,7 @@ const NavBar= () => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  
+  const [value, setValue] = React.useState(0);
 
   const handleClick = () => {
     
@@ -180,6 +211,11 @@ const NavBar= () => {
   };
   
   
+  const [openR, setOpenR] = React.useState(false);
+
+  const handleClickR = () => {
+    setOpenR(!openR);
+  };
     return (
       < StylesProvider  injectFirst >
    <div className={classes.root}>
@@ -189,7 +225,7 @@ const NavBar= () => {
       <AppBar style={{backgroundColor:'#fff',height: 55, }} position="fixed" className={classes.appBar}>
                     
             <Toolbar>
-                       
+            <Hidden only={['sm', 'xs']}>
                 <IconButton
                       color="inherit"aria-label="open drawer"
                       onClick={handleClick}edge="start" className={clsx(classes.menuButton)}
@@ -197,13 +233,14 @@ const NavBar= () => {
                         <MenuIcon style={{color:'#50b5ff'}}/>
                 </IconButton>
                     
-
-                <Typography variant="h6"className={classes.title} noWrap >
-                          UniSwap
-                </Typography>
+                </Hidden>
+                <img alt="logo" src={process.env.PUBLIC_URL + '/images/logo4.jpg'}
+                            style={{width: 87, height: 53,marginBottom:7}} />
 
                             {/********barre de recherche *********/}
 
+
+                            <Hidden only={['xs','sm']}>
                 <div className={classes.search}>
 
                    <div className={classes.searchIcon}>
@@ -217,20 +254,36 @@ const NavBar= () => {
 
                 </div>
 
+                </Hidden>
 
+             <Hidden only={['lg','md','xl']}>  <IconButton  onClick={handleClickR} > 
+               <SearchIcon style={{color:'#50b5ff'}} /></IconButton> </Hidden>
+               
+                       
                          {/********right buttons *********/}
 
                <Box display="flex"justifyContent="flex-end" flexGrow= {1}  style={{marginBottom: 10}}   >
 
+               <Hidden only={['sm','xs']}> 
                    <Tooltip disableFocusListener title="Profil">
 
                         <Button style={{textTransform:'lowercase'}}>
                            <Avatar alt="Remy Sharp" src={process.env.PUBLIC_URL + '/images/avatar.jpg'}
                             style={{width: 40, height: 40}} />
-                            <h6 href="#text-buttons" className={classes.name}> Lamia </h6>
+                            <h6 href="#text-buttons" className={classes.name}> Lamia </h6>      
                         </Button>
 
                    </Tooltip>
+                   </Hidden>
+
+                <Hidden only={['md','xl','lg']}>    
+                  <Button style={{top: 7,left: 10
+                  }}>
+                   <Avatar alt="Remy Sharp" src={process.env.PUBLIC_URL + '/images/avatar.jpg'}
+                            style={{width: 35, height: 35}} />
+                            
+                            </Button>
+                              </Hidden>
 
                              
                   <Tooltip disableFocusListener title="notifications">
@@ -435,13 +488,66 @@ const NavBar= () => {
                   </Tooltip>
 
               </Box>
+               
+
+
+                          {/**bottom nav bar */}
+
+                          <Hidden only={['lg', 'md','xl']}>
+
+  
+
+
+
+                      <BottomNavigation
+                      value={value}
+                      onChange={(event, newValue) => {
+                        setValue(newValue);
+                      }}
+                      showLabels
+                    color="primary" className={classes.bottomNavBar} navigationBtn
+                    >
+
+                     
+                      <Collapse in={openR} timeout="auto" unmountOnExit>
+               <div className={classes.searchC}>
+
+
+                <InputBase
+                    placeholder="Search…"
+                  classes={{root: classes.inputRoot,input: classes.inputInput,}}inputProps={{ 'aria-label': 'search' }}
+                    />
+
+                </div>
+               </Collapse>   
+
+                      <Box>
+                      <BottomNavigationAction className={classes.navigationBtn} label="Home" icon={<FaHome />} />
+                      <BottomNavigationAction className={classes.navigationBtn} label="Profil" icon={<CgProfile  />} />
+                      <BottomNavigationAction className={classes.navigationBtn} label="Groupes" icon={<HiUserGroup  />} />
+                      <BottomNavigationAction  
+                      className={classes.navigationBtn}label="Messages" icon={<AiFillMessage/>} />
+                     </Box>
+                    </BottomNavigation>
+
+
+      
+      </Hidden >
+
+
+
 
             </Toolbar>
+        
       </AppBar>
+    
+
+     
 
 
-                          {/********sideNavBar *********/}
+               {/********sideNavBar *********/}
 
+                          <Hidden only={['sm', 'xs']}>
       <Drawer
                 
         variant="permanent"
@@ -510,7 +616,7 @@ const NavBar= () => {
                         [classes.hide]: !open,
                       })}
 
-                      >Groupes</Typography>
+                      >Groupes et Pages</Typography>
 
               </ListItem>
 
@@ -557,7 +663,9 @@ const NavBar= () => {
         </List>
                     
       </Drawer>
+      </Hidden >
    </div>
+
 
    </StylesProvider >  
 

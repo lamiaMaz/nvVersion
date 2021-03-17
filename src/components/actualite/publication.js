@@ -321,7 +321,7 @@ export default function Publication() {
                                      100 J'aime</a>
 
                                 
-                              {/**liste des perssones qui aiment la pub */}
+                              {/**mentions J'aime */}
 
                               <Dialog  onClose={modalClose} aria-labelledby="customized-dialog-title" open={open}>
                                 <DialogTitle id="customized-dialog-title" onClose={modalClose}>

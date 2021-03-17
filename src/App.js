@@ -1,7 +1,7 @@
 import React from 'react';
 //import Connexion from './components/connexion/connexion'
 import Actualite from './components/actualite/actualite'
-//import Actu from './components/actu/actu'
+import Groupes from './components/groupes/groupes'
 //import Insc from './components/inscription/insc'
 
 import { BrowserRouter, Switch, Route} from 'react-router-dom'
@@ -11,10 +11,9 @@ function App() {
     <div >
  <BrowserRouter> 
  <Switch>
-  <Route path='/' component={Actualite}/>
- {/**  <Route path='/' component={Actu}/>
-  <Route path='/Insc' component={Insc}/>
-*/}
+  <Route path='/groupes' component={Groupes}/>
+   <Route path='/'  exact component={Actualite}/>
+
  </Switch>
  </BrowserRouter>
     
