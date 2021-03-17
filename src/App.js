@@ -2,7 +2,7 @@ import React from 'react';
 //import Connexion from './components/connexion/connexion'
 import Actualite from './components/actualite/actualite'
 import Groupes from './components/groupes/groupes'
-//import Insc from './components/inscription/insc'
+import Profil from './components/profil/profil'
 
 import { BrowserRouter, Switch, Route} from 'react-router-dom'
 
@@ -12,7 +12,8 @@ function App() {
  <BrowserRouter> 
  <Switch>
   <Route path='/groupes' component={Groupes}/>
-   <Route path='/'  exact component={Actualite}/>
+  <Route path='/'  exact component={Actualite}/>
+  <Route path='/profil'  exact component={Profil}/>
 
  </Switch>
  </BrowserRouter>
