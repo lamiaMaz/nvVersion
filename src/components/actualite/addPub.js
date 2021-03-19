@@ -68,66 +68,8 @@ export default function AddPub() {
 
 
     return (
-      <>
-    {/**
-      <Card style={{ marginBottom:20,}} xs={3
-      
-      } sm={8}>
-      
-      <CardContent>
-      <h6 style={{color:'black',fontSize:15,marginTop: 0,marginBottom: 5,
-        }}>Créer un poste</h6>
-      <Divider/>
-        <Box display="flex"alignItems="center"
-        style={{height:50
-        }}
-        
-        >
-          <Avatar alt="Remy Sharp" src={process.env.PUBLIC_URL + '/images/avatar.jpg'} />
-          <TextField id="outlined-basic"  placeholder="Ajoutez un text"
-              multiline 
-              rows={3}
-              variant="outlined" className={classes.root}/> 
-       
-        </Box>
-      </CardContent>
-      <Divider />
-      <CardActions  style={{  
-              }}>
-        <Box display='flex'>
-       <Box  style={{flexGrow:1  }}>
-        <IconButton aria-label="" style={{  marginRight: 5,
-              borderRadius:5,
-                        }}
-              >
-              <AddPhotoAlternateIcon  style={{ color: 'darkmagenta', }}/>
-              
-        </IconButton>
-
-        
-        <IconButton aria-label="" style={{  marginRight:5,
-              borderRadius:5,
-                        }}
-              >
-                    <EmojiEmotionsIcon  style={{ color: '#ffc700', }}/>
-                   
-        </IconButton>
-
-        <IconButton aria-label="" style={{marginRight: 5,
-                borderRadius:5,
-                          }}
-                >
-                      <AttachFileIcon  style={{ color: 'blue',}}/>
-          
-        </IconButton>
-        </Box>
-        <Box display="flex"justifyContent="flex-end" flexGrow= {1}   >
-<IconButton style={{ color: 'crimson',}}> <SendIcon/></IconButton>
-      </Box>
-        </Box>
-      </CardActions>
-    </Card>
-   */}
+  
+    
 
 
 <Card  style={{ marginBottom:20,}}>
@@ -189,7 +131,7 @@ export default function AddPub() {
    
      
   
-</>
+
 
     )
 }

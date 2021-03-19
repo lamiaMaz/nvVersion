@@ -96,7 +96,7 @@ display:'none',
     border:'1px solid #f1f1f1',
     bottom: 5,
     height: 34,
-    width: 52,
+    width: 65,
     [theme.breakpoints.up('sm')]: {
     marginLeft: theme.spacing(1),
     },

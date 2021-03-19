@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     margin: 0,   
     color: '#777D74',
     background: '#fafafb',
-    overflow: 'hidden',
+    overflow : 'hidden',
   },
  topimg:{
 
@@ -54,7 +54,7 @@ function Actualite() {
         <NavBar/>
         </Grid>
         <Grid item xs={8} sm={8} md={12} lg={12} className={classes.topimg} 
-        style={{ marginTop:150,marginRight:50,padding:'0 30px',marginLeft: 55 }}
+        style={{ marginTop:125,marginRight:50,padding:'0 30px',marginLeft: 55 }}
         > 
         <Box display='flex' >
             
@@ -72,8 +72,7 @@ function Actualite() {
        
         </Grid>
       
-        <Grid item xs={12} style={{ marginTop:30,}} 
-        >
+        <Grid item xs={12} style={{ marginTop:30,}} >
          
           <Box display="flex" >
          
@@ -90,6 +89,8 @@ function Actualite() {
         </Grid>
         </Box>
         </Grid>
+
+        
         <Grid item  >
         <Hidden only={['xs','sm']}>
         <Discussions/>     

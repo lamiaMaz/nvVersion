@@ -3,7 +3,7 @@ import React from 'react';
 import Actualite from './components/actualite/actualite'
 import Groupes from './components/groupes/groupes'
 import Profil from './components/profil/profil'
-
+import GroupesPage from './components/groupes/groupesPage'
 import { BrowserRouter, Switch, Route} from 'react-router-dom'
 
 function App() {
@@ -13,7 +13,9 @@ function App() {
  <Switch>
   <Route path='/groupes' component={Groupes}/>
   <Route path='/'  exact component={Actualite}/>
-  <Route path='/profil'  exact component={Profil}/>
+  <Route path='/profil'   component={Profil}/>
+  <Route path='/groupesPage'   component={GroupesPage}/>
+
 
  </Switch>
  </BrowserRouter>
