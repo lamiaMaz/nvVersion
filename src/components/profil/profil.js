@@ -1,6 +1,8 @@
 import React from 'react';
+import clsx from 'clsx';
+
 import {Grid,Container,Box,Hidden,Avatar,Card, CardContent,Typography,GridList, Divider,IconButton,Button,
-TextField,DialogActions} from '@material-ui/core';
+TextField,DialogActions,InputBase} from '@material-ui/core';
 import NavBar from '../actualite/drawer';
 import Discussions from '../actualite/Discussions'
 import { makeStyles, useTheme, withStyles } from '@material-ui/core/styles';
@@ -8,27 +10,28 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
-import AddPub from "../actualite/addPub";
 import Publication from '../actualite/publication'
 import SwipeableViews from 'react-swipeable-views';
 import {FiEdit} from 'react-icons/fi';
 import {AiOutlineCamera} from 'react-icons/ai'
 import Dialog from '@material-ui/core/Dialog';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
-import MuiDialogContent from '@material-ui/core/DialogContent';
 import CloseIcon from '@material-ui/icons/Close';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 //import DateFnsUtils from '@date-io/date-fns';
 //import { MuiPickersUtilsProvider,KeyboardDatePicker,DatePicker,TimePicker,DateTimePicker,} from '@material-ui/pickers';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
-
+import Input from '@material-ui/core/Input';
+import FilledInput from '@material-ui/core/FilledInput';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import InputLabel from '@material-ui/core/InputLabel';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
 const useStyles = makeStyles((theme) => ({
  
@@ -56,14 +59,35 @@ const useStyles = makeStyles((theme) => ({
         border: '3px solid white',
     
       },
-      
+      closeButton: {
+        position: 'absolute',
+        right: theme.spacing(1),
+        top: theme.spacing(1),
+        color: theme.palette.grey[500],
+      },
       root2: {
         marginBottom:20,
+        marginTop:20,
         '& > *': {
           margin: theme.spacing(1),
           width: '25ch',
         },
       },
+      formControl: {
+        margin: theme.spacing(1),
+       
+      },
+      selectEmpty: {
+        marginTop: theme.spacing(2),
+      },
+      margin: {
+        margin: theme.spacing(1),
+      },
+      
+      textField: {
+        width: '25ch',
+      },
+      
   }));
  
   
@@ -141,18 +165,37 @@ function Profil (){
     setOpen(false);
   };
 
-  const [etat, setEtat] = React.useState({
-    niveau: '',
+ 
+    const [state, setState] = React.useState({
+      age: '',
+      
   });
 
   const change = (event) => {
-    const niveau = event.target.niveau;
-    setEtat({
-      ...etat,
-      [niveau]: event.target.value,
+    const name = event.target.name;
+    setState({
+      ...state,
+      [name]: event.target.value,
     });
   };
+  const [val, setVal] = React.useState({
+   
+    password: '',
+    
+    showPassword: false,
+  });
 
+  const pChange = (prop) => (event) => {
+    setVal({ ...val, [prop]: event.target.value });
+  };
+
+  const handleClickShowPassword = () => {
+    setVal({ ...val, showPassword: !val.showPassword });
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
     return (
         <div className={classes.root}>
 
@@ -223,21 +266,21 @@ function Profil (){
                     <DialogTitle >
                     <Typography style={{color:'black', fontWeight:700,fontSize:18,textAlign:'center'}}>modifier le profil</Typography>
 
-                    <IconButton aria-label="close" className={classes.closeButton} onClick={handleClose}>
+                    <IconButton aria-label="close"  className={classes.closeButton} onClick={handleClose}>
                       <CloseIcon />
                     </IconButton>
                                 
                     </DialogTitle>
                     <DialogContent>
-                      <Typography style={{color:'grey', fontWeight:600,marginBottom:15}}>Informations personnelles</Typography>
+                      <Typography style={{color:'grey', fontWeight:600,marginBottom:15}}>Vos Informations</Typography>
                     <form className={classes.root2}>
                             <TextField size="small"  variant="outlined" label="Nom"defaultValue="Mazouz" />
                             <TextField size="small"  variant="outlined" label="Prénom"defaultValue="Lamia" />
                             <TextField size="small" type="email"  variant="outlined" label="Adresse Mail"defaultValue="Mazouz@gmail.com" />
                             <TextField size="small" variant="outlined" label="date de naissance" defaultValue="23/12/96" />
 
-                         {/** 
-                       <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                      
+                    {/**  <MuiPickersUtilsProvider utils={DateFnsUtils}>
    
                                   <KeyboardDatePicker
                                     disableToolbar
@@ -249,14 +292,13 @@ function Profil (){
                                     onChange={handleDateChange}
                                     KeyboardButtonProps={{'aria-label': 'change date',}} />
                               
-                            </MuiPickersUtilsProvider>
-*/}
+                            </MuiPickersUtilsProvider> */} 
+
 
 
                             <TextField style={{width:'40ch'}} variant="outlined" label="Bio" multiline rows={4}
                             
-                            defaultValue=" Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit," />
+                            defaultValue=" Lorem ipsum dolor sit amet, consectetuer adipiscing elit" />
 
                     </form>
 
@@ -264,35 +306,54 @@ function Profil (){
 
 
 
-                    <Typography style={{color:'grey', fontWeight:600,marginBottom:15,marginTop:20}}>Informations personnelles</Typography>
                     <form className={classes.root2}>
-                            <TextField size="small"  variant="outlined" label="Université"defaultValue="Tizi-Ouzou" />
-                            <TextField size="small"  variant="outlined" label="Faculté"defaultValue="Lamia" />
-                            <TextField size="small"  variant="outlined" label="Département"defaultValue="Mazouz@gmail.com" />
-                            <TextField size="small" variant="outlined" label="Spécialité" defaultValue="23/12/96" />
-                            <FormControl variant="outlined" className={classes.formControl}>
-                              <InputLabel>Niveau</InputLabel>
-                              <Select
-                                native
-                                value={etat.niveau}
-                                onChange={change}
-                                label="Niveau"
-                                inputProps={{
-                                  name: 'niveau',
-                                 
-                                }}
-                              >
-                                <option aria-label="None" value="Master 2" />
-                                <option value={10}>L1</option>
-                                <option value={20}>L2</option>
-                                <option value={30}>L3</option>
-                                <option value={30}>Master 1</option>
-                                <option value={30}>Master 2</option>
+                <TextField size="small"  variant="outlined" label="Université" defaultValue="Tizi-Ouzou" />
+                <TextField size="small" style={{ width: '40ch'}}  variant="outlined" label="Faculté" defaultValue="Genie électrique et informatique" />
+                <TextField size="small" variant="outlined" label="Département" defaultValue="Informatique" />
+                <TextField size="small" variant="outlined" label="Spécialité" defaultValue="ISI" />
+                <FormControl size="small"  htmlFor="outlined-age-native-simple">
+                  <InputLabel>Niveau</InputLabel>
+                  <Select
+                    native
+                    value={state.age}
+                    onChange={change}
+                    label="Age"
+                    inputProps={{
+                      name: 'age',
+                      id: 'outlined-age-native-simple',
+                      
+                    }}
+                  >
+                    <option aria-label="None" value="" />
+                    <option value={1}>L1</option>
+                    <option value={2}>L2</option>
+                    <option value={3}>L3</option>
+                    <option value={4}>Master 1</option>
+                    <option value={5}>Master 2</option>
 
-                              </Select>
-                            </FormControl>
-                         
-                
+                        </Select>
+                      </FormControl>
+                    
+                      <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
+          <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+          <Input
+            id="standard-adornment-password"
+            type={val.showPassword ? 'text' : 'password'}
+            value={val.password}
+            onChange={pChange('password')}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                >
+                  {val.showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            }
+          />
+        </FormControl>
 
                     </form>
                     </DialogContent>
@@ -300,12 +361,13 @@ function Profil (){
 
 
                     <DialogActions>
-                      <Button variant="outlined" color="primary">
+
+
+
+                      <Button variant="outlined" style={{color:'white',backgroundColor:'#50b5ff'}} >
                         Modifier
                       </Button>
-                      <Button variant="outlined" color="primary" autoFocus>
-                       Annuler
-                      </Button>
+                    
                     </DialogActions>
                   </Dialog>
     </div>
@@ -360,12 +422,14 @@ function Profil (){
      <TabPanel value={value} index={0} dir={theme.direction}>
          {/*********************************** Bio**************************************** */}
 
-         <Grid xs={12} sm={9} lg={9} xl={10}  style={{ marginLeft:60 }} >
+         <Grid xs={12} sm={12} md={12} lg={12} xl={12} spacing={0}
+    align="center"
+    justify="center" >
 
-<Card style={{ marginBottom: 25,marginLeft:150,borderRadius:20,backgroundColor: 'rgba(255, 255, 255, .15)',  
+<Card style={{ marginBottom: 25,borderRadius:20,backgroundColor: 'rgb(162 150 150 / 15%)',  
  backdropFilter: 'blur(5px)' }}>
 
- <CardContent>
+ <CardContent> 
  
 
   
