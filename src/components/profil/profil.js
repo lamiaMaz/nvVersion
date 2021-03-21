@@ -277,7 +277,7 @@ function Profil (){
                             <TextField size="small"  variant="outlined" label="Nom"defaultValue="Mazouz" />
                             <TextField size="small"  variant="outlined" label="Prénom"defaultValue="Lamia" />
                             <TextField size="small" type="email"  variant="outlined" label="Adresse Mail"defaultValue="Mazouz@gmail.com" />
-                            <TextField size="small" variant="outlined" label="date de naissance" defaultValue="23/12/96" />
+                            <TextField type="date" size="small" variant="outlined" label="date de naissance" defaultValue="23/12/96" />
 
                       
                     {/**  <MuiPickersUtilsProvider utils={DateFnsUtils}>

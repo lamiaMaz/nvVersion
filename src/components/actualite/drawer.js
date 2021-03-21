@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 import { makeStyles,Box, useTheme ,Drawer,AppBar,Toolbar,List,CssBaseline,StylesProvider, BottomNavigation,Collapse,
-IconButton,InputBase,ListItemIcon,ListItem,Badge,Avatar,Button,Tooltip,MenuItem,Link,Hidden,BottomNavigationAction,
+IconButton,InputBase,ListItemIcon,ListItem,Badge,Avatar,Button,Tooltip,MenuItem,Hidden,BottomNavigationAction,
  Typography ,Menu,} from '@material-ui/core';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import {AiFillMessage} from "react-icons/ai";
@@ -11,8 +11,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import {CgProfile} from "react-icons/cg";
 import MenuIcon from '@material-ui/icons/Menu';
-import { BrowserRouter, Switch, Route} from 'react-router-dom'
-
+import { BrowserRouter, Switch, Route,Link} from 'react-router-dom'
 
 
                          {/************css de page ***********/}
@@ -216,7 +215,7 @@ const NavBar= () => {
   const handleClickR = () => {
     setOpenR(!openR);
   };
-    return (
+   return (
       < StylesProvider  injectFirst >
    <div className={classes.root}>
        <CssBaseline />
@@ -566,6 +565,7 @@ const NavBar= () => {
                   
           <List style={{marginTop:90}}>
 
+          <Link  to={"/"} style={{textDecoration:'none'}} >
 
               <ListItem button style={{paddingLeft: 16,paddingRight: 16,right: 5,marginBottom:10}}>
 
@@ -582,7 +582,11 @@ const NavBar= () => {
                       >Home</Typography>
               </ListItem>
 
+              </Link>
 
+
+
+              <Link  to={"/messages"} style={{textDecoration:'none'}} >
 
               <ListItem button style={{paddingLeft: 16,paddingRight: 16,right: 5,marginBottom:10}}>
 
@@ -599,9 +603,12 @@ const NavBar= () => {
                       
                       
               </ListItem>
+              </Link>
 
 
 
+
+              <Link  to={"/groupes"} style={{textDecoration:'none'}} >
 
               <ListItem button style={{paddingLeft: 16,paddingRight: 16,right: 5,marginBottom:10}}>
 
@@ -619,20 +626,21 @@ const NavBar= () => {
                       >Groupes et Pages</Typography>
 
               </ListItem>
+              </Link>
 
 
 
 
+<Link Link to={"/profil"} style={{textDecoration:'none'}} >
+              <ListItem button  style={{paddingLeft: 16,paddingRight: 16,right: 5,marginBottom:10}}>
 
-              <ListItem button style={{paddingLeft: 16,paddingRight: 16,right: 5,marginBottom:10}}>
-
-                 <ListItemIcon  style={{color:'#fff',display: 'block',marginRight: 10}}>
+                 <  ListItemIcon style={{color:'#fff',display: 'block',marginRight: 10}}>
 
                       <CgProfile style={{marginLeft: 10, marginBottom: 5,fontSize: 22}}/>
 
                      
                       
-                </ListItemIcon >
+                </ListItemIcon>
 
                       <Typography style={{color:'#fff',fontSize: 18}}
                       className={clsx( {
@@ -642,7 +650,7 @@ const NavBar= () => {
                       >Profil</Typography>
 
                </ListItem>
-
+               </Link>
 
 
                <Typography style={{color:'#fff',fontSize: 16,marginTop: 80,marginLeft: 30,}}

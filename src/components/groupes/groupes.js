@@ -1,5 +1,5 @@
 import React from 'react'
-import {Grid,Box,Hidden,Container,Card,CardContent,Typography, AppBar,Tabs,Tab,InputBase,Tooltip,Avatar,Link,Button } from '@material-ui/core';
+import {Grid,Box,Hidden,Container,Card,CardContent,Typography, AppBar,Tabs,Tab,InputBase,Tooltip,Avatar,Button } from '@material-ui/core';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Discussions from '../actualite/Discussions';
 import NavBar from '../actualite/drawer';
@@ -8,6 +8,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
 import { AvatarGroup } from '@material-ui/lab';
+import { BrowserRouter, Switch, Route,Link} from 'react-router-dom'
 
 
 
@@ -130,6 +131,8 @@ const useStyles = makeStyles((theme) => ({
         left: 80,
         right: 80,
         bottom: 170,
+        color:'black',
+        textDecoration:'none',
       }
 }));
 
@@ -268,9 +271,9 @@ export default function Groupes() {
 
       <Avatar className={classes.image}  src={process.env.PUBLIC_URL + '/images/i6.jpg'}/>
 
-      <a className={classes.titre}>
+      <Link to={"/groupesPage"} className={classes.titre}>
           Master 2 ISI
-      </a>
+      </Link>
      <AvatarGroup max={5} style={{bottom: 280 ,left: 40, position:'relative'}}>
       <Avatar src={process.env.PUBLIC_URL + '/images/avatar.jpg'} />
       <Avatar src={process.env.PUBLIC_URL + '/images/d2.jpg'} />
