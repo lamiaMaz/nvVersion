@@ -1,6 +1,5 @@
 import React from 'react';
 import clsx from 'clsx';
-
 import {Grid,Container,Box,Hidden,Avatar,Card, CardContent,Typography,GridList, Divider,IconButton,Button,
 TextField,DialogActions,InputBase} from '@material-ui/core';
 import NavBar from '../actualite/drawer';
@@ -19,8 +18,6 @@ import CloseIcon from '@material-ui/icons/Close';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-//import DateFnsUtils from '@date-io/date-fns';
-//import { MuiPickersUtilsProvider,KeyboardDatePicker,DatePicker,TimePicker,DateTimePicker,} from '@material-ui/pickers';
 import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import Input from '@material-ui/core/Input';
@@ -280,21 +277,7 @@ function Profil (){
                             <TextField type="date" size="small" variant="outlined" label="date de naissance" defaultValue="23/12/96" />
 
                       
-                    {/**  <MuiPickersUtilsProvider utils={DateFnsUtils}>
-   
-                                  <KeyboardDatePicker
-                                    disableToolbar
-                                    variant="inline"
-                                    format="MM/dd/yyyy"
-                                    margin="normal"
-                                    label="Date de naissance"
-                                    value={selectedDate}
-                                    onChange={handleDateChange}
-                                    KeyboardButtonProps={{'aria-label': 'change date',}} />
-                              
-                            </MuiPickersUtilsProvider> */} 
-
-
+                 
 
                             <TextField style={{width:'40ch'}} variant="outlined" label="Bio" multiline rows={4}
                             

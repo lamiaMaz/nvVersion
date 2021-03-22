@@ -233,8 +233,8 @@ const NavBar= () => {
                 </IconButton>
                     
                 </Hidden>
-                <img alt="logo" src={process.env.PUBLIC_URL + '/images/logo4.jpg'}
-                            style={{width: 87, height: 53,marginBottom:7}} />
+                <Link to={"/"} > <img alt="logo" src={process.env.PUBLIC_URL + '/images/logo4.jpg'}
+                            style={{width: 87, height: 53,marginBottom:7}} /> </Link>
 
                             {/********barre de recherche *********/}
 
@@ -520,14 +520,32 @@ const NavBar= () => {
                 </div>
                </Collapse>   
 
-                      <Box>
-                      <BottomNavigationAction className={classes.navigationBtn} label="Home" icon={<FaHome />} />
-                      <BottomNavigationAction className={classes.navigationBtn} label="Profil" icon={<CgProfile  />} />
-                      <BottomNavigationAction className={classes.navigationBtn} label="Groupes" icon={<HiUserGroup  />} />
-                      <BottomNavigationAction  
-                      className={classes.navigationBtn}label="Messages" icon={<AiFillMessage/>} />
-                     </Box>
-                    </BottomNavigation>
+          <Box>
+
+
+        <BottomNavigationAction
+         className={classes.navigationBtn} label="Home" icon={<Link to={"/"}style={{color:'grey'}} >  <FaHome />
+         </Link>} /> 
+
+
+
+       <BottomNavigationAction
+        className={classes.navigationBtn} label="Profil" icon={<Link to={"/profil"}style={{color:'grey'}} ><CgProfile  />
+        </Link>} />
+
+
+          <BottomNavigationAction
+           className={classes.navigationBtn} label="Groupes" icon={<Link to={"/groupes"}style={{color:'grey'}} > <HiUserGroup  />
+           </Link>} />
+
+
+          <BottomNavigationAction  
+          className={classes.navigationBtn}label="Messages" icon={<Link to={"/messages"}style={{color:'grey'}} ><AiFillMessage/>
+          </Link>} />
+
+
+          </Box>
+        </BottomNavigation>
 
 
       
