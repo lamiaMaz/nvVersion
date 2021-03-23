@@ -1,11 +1,11 @@
 import React from 'react';
 //import Connexion from './components/connexion/connexion'
 import Actualite from './components/actualite/actualite'
-import Groupes from './components/groupes/groupes'
+import GroupesList from './components/groupes/groupesList'
 import Profil from './components/profil/profil'
-import GroupesPage from './components/groupes/groupesPage'
+import Groupe from './components/groupes/groupe'
 import NavBar from './components/actualite/drawer';
-
+import Page from './components/groupes/page'
 import { BrowserRouter, Switch, Route} from 'react-router-dom'
 
 function App() {
@@ -15,10 +15,11 @@ function App() {
  <div>
  <NavBar/>
  <Switch>
-  <Route path='/groupes' component={Groupes}/>
+  <Route path='/groupesList' component={GroupesList}/>
   <Route path='/'  exact component={Actualite}/>
   <Route path='/profil'   component={Profil}/>
-  <Route path='/groupesPage'   component={GroupesPage}/>
+  <Route path='/groupe'   component={Groupe}/>
+  <Route path='/page'   component={Page}/>
 
 
  </Switch>

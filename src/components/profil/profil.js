@@ -1,10 +1,10 @@
 import React from 'react';
 import clsx from 'clsx';
-import {Grid,Container,Box,Hidden,Avatar,Card, CardContent,Typography,GridList, Divider,IconButton,Button,
-TextField,DialogActions,InputBase} from '@material-ui/core';
+import {Grid,Container,Box,Hidden,Avatar,Card, CardContent,Typography,GridList, Divider,IconButton,Button,Paper,
+TextField,DialogActions,} from '@material-ui/core';
 import NavBar from '../actualite/drawer';
 import Discussions from '../actualite/Discussions'
-import { makeStyles, useTheme, withStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme, } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import PropTypes from 'prop-types';
@@ -12,23 +12,23 @@ import AppBar from '@material-ui/core/AppBar';
 import Publication from '../actualite/publication'
 import SwipeableViews from 'react-swipeable-views';
 import {FiEdit} from 'react-icons/fi';
-import {AiOutlineCamera} from 'react-icons/ai'
 import Dialog from '@material-ui/core/Dialog';
 import CloseIcon from '@material-ui/icons/Close';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Select from '@material-ui/core/Select';
-import NativeSelect from '@material-ui/core/NativeSelect';
 import Input from '@material-ui/core/Input';
-import FilledInput from '@material-ui/core/FilledInput';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import {Link} from 'react-router-dom'
+import AfficheGroup from './afficheGroup'
+
+
 
 const useStyles = makeStyles((theme) => ({
  
@@ -44,6 +44,19 @@ const useStyles = makeStyles((theme) => ({
         color: '#777D74',
         background: '#fafafb',
         overflow: 'hidden',
+      },
+      root1: {
+        flexGrow: 1,
+        fontWeight: 400,
+        fontStyle: 'normal',   
+        fontSize: 14,
+        lineHeight: 1.8,
+        padding: 0,
+        margin: 0,   
+        color: '#777D74',
+        background: '#fafafb',
+        overflow: 'hidden',
+        display:'flex',
       },
       image:{
         display: 'block',
@@ -84,7 +97,26 @@ const useStyles = makeStyles((theme) => ({
       textField: {
         width: '25ch',
       },
-      
+      input:{
+        visibility: 'hidden',
+      },
+      btnR:{
+        textTransform: 'lowercase',
+        height: 25,
+        paddingLeft: 5,
+        paddingRight: 5,
+        backgroundColor:'#50b5ff',
+        marginTop:7,
+        marginLeft:10,
+        marginRight:10,
+        marginLeft:'auto'
+      },
+      tab:{
+        '&.MuiBox-root':{
+paddingLeft:0,
+paddingRight:0
+        }
+      },
   }));
  
   
@@ -142,7 +174,14 @@ function Profil (){
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const [open, setOpen] = React.useState(false);
   const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+  const [openp, setOpenp] = React.useState(false);
 
+  const handleClickOpenp = () => {
+    setOpenp(true);
+  };
+  const handleClosep = () => {
+    setOpenp(false);
+  };
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
@@ -217,25 +256,41 @@ function Profil (){
                     <Grid item xs={10} sm={9} md={10} lg={12 }xl={12}className={classes.topimg} 
                     style={{ marginTop:100, marginRight: 60 ,marginLeft: 60,height:250 ,}} > 
 
+
                        <img ms={2} src={process.env.PUBLIC_URL + '/images/covert.jpg'}
 
                     style={{width:'100%',height:'100%',objectFit: 'cover',borderRadius: '20px 20px 0px 0px'}} />
  
-              
-                    
-
+ {/**         
+ <input accept="image/*" className={classes.input} id="icon-button-file" type="file" />
+      <label htmlFor="icon-button-file">
+        <IconButton color="primary" aria-label="upload picture" component="span">
+          <PhotoCamera />
+        </IconButton>
+      </label>
+*/}    
 
                   {/***********************************  nom utilisateur**************************************** */}
                   <Card>
                 <CardContent>
 
+
+                
+
+
      <h6 style={{fontSize:23,fontWeight:700,textAlign:'center', marginTop: 35,marginBottom:30}}>Josephine Williams <br/>
      <IconButton onClick={handleClickOpen}> <FiEdit  color='#212121' /></IconButton></h6>
 
       
+
+    
+
+
                 </CardContent>
             </Card>
+
             
+
         </Grid>
 
 
@@ -245,7 +300,7 @@ function Profil (){
         <Avatar className={classes.image}  src={process.env.PUBLIC_URL + '/images/profil.jpg'}/>
 
 
-
+       
 
 
             {/***********************************  modifier le profil**************************************** */}
@@ -384,9 +439,9 @@ function Profil (){
         >
           <Tab  style={{textTransform:'lowercase '}}label="publications" {...a11yProps(0)} />
           <Tab  style={{textTransform:'lowercase '}}label="à propos" {...a11yProps(1)} />
-          <Tab style={{textTransform:'lowercase '}} label="abonnés et abonnements" {...a11yProps(2)} />
-          <Tab  style={{textTransform:'lowercase '}}label="photos " {...a11yProps(3)} />
-          <Tab  style={{textTransform:'lowercase '}}label="vidéos " {...a11yProps(4)} />
+          <Tab style={{textTransform:'lowercase '}} label="abonnés " {...a11yProps(2)} />
+          <Tab style={{textTransform:'lowercase '}} label=" abonnements" {...a11yProps(3)} />
+          <Tab  style={{textTransform:'lowercase '}}label="photos " {...a11yProps(4)} />
           <Tab  style={{textTransform:'lowercase '}}label="groupes et pages" {...a11yProps(5)} />
         </Tabs>
 
@@ -463,7 +518,7 @@ function Profil (){
 
            <GridList cellHeight={76}  className={classes.gridList} cols={3}>
         
-            <img src={process.env.PUBLIC_URL + '/images/i9.jpg'}  />
+            <img src={process.env.PUBLIC_URL + '/images/i9.jpg'} onClick={handleClickOpenp} />
             <img src={process.env.PUBLIC_URL + '/images/img.jpg'} />
             <img src={process.env.PUBLIC_URL + '/images/img5.jpg'} />
             <img src={process.env.PUBLIC_URL + '/images/img6.png'} />
@@ -473,42 +528,52 @@ function Profil (){
          </CardContent>
        </Card>
 
+              {/**********************affichage des photos**************** */}
+              <Grid item xs={3} sm={5} md={7} lg={8} xl={12}>
+
+              <Dialog onClose={handleClosep}  open={openp}>
+              <img style={{width:'100%',height:'100%'}} src={process.env.PUBLIC_URL + '/images/img2.jpg'}/>
+
+              
+
+              </Dialog>
+
+              </Grid>
 
 
+              <Card style={{ marginBottom: 25,borderRadius:15 }}>
+
+        <CardContent>
 
 
-       <Card style={{ marginBottom: 25,borderRadius:15 }}>
+          <Typography style={{ marginBottom: 25,fontSize:19,fontWeight:700, }}>
+            Mes groupes
 
-<CardContent>
+          </Typography>
+                <Box display='flex'style={{marginBottom:15,marginTop:10}}>
 
+                <Avatar  src={process.env.PUBLIC_URL + '/images/i7.jpg'}/>
 
-  <Typography style={{ marginBottom: 25,fontSize:19,fontWeight:700, }}>
-    Mes groupes
+                <Typography style={{marginLeft:20,}}>
+                <Link to={'/groupe'} style={{ fontSize:14,fontWeight:600,color:'black',textDecoration:'none'}}>
+                  WP Developers </Link> <br/>
+                <span style={{ fontSize:12,color:'grey',marginLeft:10,}}>252 membres</span>
+                </Typography>
+                </Box>
 
-  </Typography>
-        <Box display='flex'style={{marginBottom:15,marginTop:10}}>
+        <Divider/>
 
-        <Avatar  src={process.env.PUBLIC_URL + '/images/i7.jpg'}/>
+                <Box display='flex'style={{marginBottom:15,marginTop:10}}>
 
-        <Typography style={{marginLeft:20,}}>
-        <a href='#' style={{ fontSize:14,fontWeight:600,color:'black',textDecoration:'none'}}>WP Developers </a> <br/>
-        <span style={{ fontSize:12,color:'grey',marginLeft:10,}}>252 membres</span>
-        </Typography>
-        </Box>
+                <Avatar  src={process.env.PUBLIC_URL + '/images/i8.jpg'}/>
 
-<Divider/>
+                <Typography style={{marginLeft:20,}}>
+                <a href='#' style={{ fontSize:14,fontWeight:600,color:'black',textDecoration:'none'}}>WP Developers </a> <br/>
 
-        <Box display='flex'style={{marginBottom:15,marginTop:10}}>
+              <span  style={{ fontSize:12,color:'grey',marginLeft:10,}}>252 membres</span> 
+                </Typography>
 
-        <Avatar  src={process.env.PUBLIC_URL + '/images/i8.jpg'}/>
-
-        <Typography style={{marginLeft:20,}}>
-        <a href='#' style={{ fontSize:14,fontWeight:600,color:'black',textDecoration:'none'}}>WP Developers </a> <br/>
-
-       <span  style={{ fontSize:12,color:'grey',marginLeft:10,}}>252 membres</span> 
-        </Typography>
-
-        </Box>
+                </Box>
 
         <Divider/>
 
@@ -557,7 +622,7 @@ function Profil (){
 
     {/*********************************** a propos**************************************** */}
 
-        <TabPanel value={value} index={1} dir={theme.direction}>
+        <TabPanel value={value} index={1} >
           Item One
         </TabPanel>
 
@@ -565,31 +630,113 @@ function Profil (){
 
      {/***********************************  abonnes**************************************** */}
 
-        <TabPanel value={value} index={2} dir={theme.direction}>
-          Item Two
+
+     <TabPanel  value={value} index={2} dir={theme.direction}style={{backgroundColor:'#eff4fb'}}>
+
+
+
+     
+      </TabPanel>
+
+ {/***********************************  abonnements**************************************** */}
+
+ <TabPanel value={value} index={3} dir={theme.direction}>
+         
+         
+ <Grid  item xs={12} sm={12}lg={12}>
+          <Grid item xs={12} sm={12}lg={6} style={{marginLeft:'auto',marginRight:'auto'}}>
+         <Card style={{ backgroundColor: '#fafafa'}}>
+           <CardContent>
+
+                  <Box display='flex' style={{marginBottom:15,marginTop:10}}>
+                <Avatar  src={process.env.PUBLIC_URL + '/images/img4.jpg'}/>
+
+              <Link to={'/profil'}
+               style={{ fontSize:14,fontWeight:600,color:'black',marginLeft:20,textDecoration:'none',marginTop:10}}>
+                Mazouz Lamia </Link> <br/>
+            <Button variant="outlined" className={classes.btnR}>se désabonner</Button>
+                </Box>
+
+
+
+
+                <Box display='flex' style={{marginBottom:15,marginTop:10}}>
+                <Avatar  src={process.env.PUBLIC_URL + '/images/img4.jpg'}/>
+
+              <Link to={'/profil'}
+               style={{ fontSize:14,fontWeight:600,color:'black',marginLeft:20,textDecoration:'none',marginTop:10}}>
+                Mazouz Lamia </Link> <br/>
+            <Button variant="outlined" className={classes.btnR}>se désabonner</Button>
+                </Box>
+
+
+
+                <Box display='flex' style={{marginBottom:15,marginTop:10}}>
+                <Avatar  src={process.env.PUBLIC_URL + '/images/img4.jpg'}/>
+
+              <Link to={'/profil'}
+               style={{ fontSize:14,fontWeight:600,color:'black',marginLeft:20,textDecoration:'none',marginTop:10}}>
+                Mazouz Lamia </Link> <br/>
+            <Button variant="outlined" className={classes.btnR}>se désabonner</Button>
+                </Box>
+
+
+
+                <Box display='flex' style={{marginBottom:15,marginTop:10}}>
+                <Avatar  src={process.env.PUBLIC_URL + '/images/img4.jpg'}/>
+
+              <Link to={'/profil'}
+               style={{ fontSize:14,fontWeight:600,color:'black',marginLeft:20,textDecoration:'none',marginTop:10}}>
+                Mazouz Lamia </Link> <br/>
+            <Button variant="outlined" className={classes.btnR}>se désabonner</Button>
+                </Box>
+
+            
+           </CardContent>
+         </Card>
+         </Grid>
+         </Grid>
+
+
+
         </TabPanel>
-
-
 
        {/*********************************** photos**************************************** */}
 
-        <TabPanel value={value} index={3} dir={theme.direction}>
-          Item Three
-        </TabPanel>
-
-
-        {/***********************************  vidéos**************************************** */}
-
         <TabPanel value={value} index={4} dir={theme.direction}>
-          Item 4
+        <Card style={{ marginBottom: 25,borderRadius:15 }}>
+         <CardContent>
+           <h6 style={{fontSize:17,fontWeight:700,marginTop: 10 ,marginBottom: 30,}}> Photo Gallery</h6>
+
+
+           <GridList cellHeight={200}  className={classes.gridList} cols={3}>
+        
+            <img src={process.env.PUBLIC_URL + '/images/i9.jpg'} onClick={handleClickOpenp} />
+            <img src={process.env.PUBLIC_URL + '/images/img.jpg'} />
+            <img src={process.env.PUBLIC_URL + '/images/img5.jpg'} />
+            <img src={process.env.PUBLIC_URL + '/images/img6.png'} />
+       
+      </GridList>
+          
+         </CardContent>
+       </Card>
+       <Dialog onClose={handleClosep}  open={openp}>
+              <img style={{width:'100%',height:'100%'}} src={process.env.PUBLIC_URL + '/images/img2.jpg'}/>
+
+              
+
+              </Dialog>
+
         </TabPanel>
 
+
+       
 
 
         {/***********************************  groupes et pages**************************************** */}
 
         <TabPanel value={value} index={5} dir={theme.direction}>
-          Item 5
+          <AfficheGroup/>
         </TabPanel>
 
 

@@ -61,6 +61,7 @@ const useStyles = makeStyles((theme) => ({
         color: '#777D74',
         background: '#fafafb',
         overflow: 'hidden',
+    
       },
       search: {
         flexGrow: 0.3,
@@ -177,7 +178,7 @@ function a11yProps(index) {
 
 
 
-export default function Groupes() {
+export default function GroupesList() {
     const classes = useStyles();
     const theme = useTheme();
     const [value, setValue] = React.useState(0);
@@ -271,7 +272,7 @@ export default function Groupes() {
 
       <Avatar className={classes.image}  src={process.env.PUBLIC_URL + '/images/i6.jpg'}/>
 
-      <Link to={"/groupesPage"} className={classes.titre}>
+      <Link to={"/groupe"} className={classes.titre}>
           Master 2 ISI
       </Link>
      <AvatarGroup max={5} style={{bottom: 280 ,left: 40, position:'relative'}}>
@@ -283,7 +284,7 @@ export default function Groupes() {
     </AvatarGroup>
        
         <Box style={{position: 'relative',bottom: 230,left: 40}}>
-        <Link style={{marginRight:20,fontWeight:600,color:'black',marginLeft:10}}>
+        <Link style={{marginRight:20,fontWeight:600,color:'black',marginLeft:10,textDecoration:'none'}}>
          240<br/> <span style={{fontWeight:500,}}>Postes</span>
         </Link>
 
@@ -292,7 +293,7 @@ export default function Groupes() {
 
         <Box style={{position: 'relative',bottom: 280,left: 145}}>
         
-        <Link style={{marginRight:20,fontWeight:600,color:'black',marginLeft:17}}>
+        <Link style={{marginRight:20,fontWeight:600,color:'black',marginLeft:17,textDecoration:'none'}}>
          100<br/> <span style={{fontWeight:500,}}>Membres</span>
         </Link>
         </Box>
@@ -432,10 +433,9 @@ export default function Groupes() {
       <Avatar  style={{height:90,width:90,left: 80,bottom: 70}} src={process.env.PUBLIC_URL + '/images/avatar.jpg'}/>
 
        
-      <a className={classes.titre} style={{bottom:180,left: 80}}>
+      <Link to={"/page"} className={classes.titre}>
           Master 2 ISI
-      </a>
-    
+      </Link>
        
 
 

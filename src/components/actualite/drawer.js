@@ -490,7 +490,7 @@ const NavBar= () => {
                
 
 
-                          {/**bottom nav bar */}
+                          {/**mini nav bar */}
 
                           <Hidden only={['lg', 'md','xl']}>
 
@@ -535,7 +535,7 @@ const NavBar= () => {
 
 
           <BottomNavigationAction
-           className={classes.navigationBtn} label="Groupes" icon={<Link to={"/groupes"}style={{color:'grey'}} > <HiUserGroup  />
+           className={classes.navigationBtn} label="Groupes" icon={<Link to={"/groupesList"}style={{color:'grey'}} > <HiUserGroup  />
            </Link>} />
 
 
@@ -626,7 +626,7 @@ const NavBar= () => {
 
 
 
-              <Link  to={"/groupes"} style={{textDecoration:'none'}} >
+              <Link  to={"/groupesList"} style={{textDecoration:'none'}} >
 
               <ListItem button style={{paddingLeft: 16,paddingRight: 16,right: 5,marginBottom:10}}>
 
