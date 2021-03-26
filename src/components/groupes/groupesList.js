@@ -1,5 +1,8 @@
 import React from 'react'
-import {Grid,Box,Hidden,Container,Card,CardContent,Typography, AppBar,Tabs,Tab,InputBase,Tooltip,Avatar,Button } from '@material-ui/core';
+import clsx from 'clsx';
+import {Grid,Box,Hidden,Container,Card,CardContent,Typography, AppBar,Tabs,Tab,InputBase,Tooltip,Avatar,Button,
+  TextField,InputLabel,Input,InputAdornment,
+Dialog,DialogContent,DialogActions,DialogTitle,IconButton,useMediaQuery,FormControl } from '@material-ui/core';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Discussions from '../actualite/Discussions';
 import NavBar from '../actualite/drawer';
@@ -9,9 +12,10 @@ import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
 import { AvatarGroup } from '@material-ui/lab';
 import { BrowserRouter, Switch, Route,Link} from 'react-router-dom'
-
-
-
+import CloseIcon from '@material-ui/icons/Close';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -33,7 +37,28 @@ const useStyles = makeStyles((theme) => ({
         
 
     },
-
+    margin: {
+      margin: theme.spacing(1),
+    },
+    
+    textField: {
+      width: '25ch',
+    },
+    closeButton: {
+      position: 'absolute',
+      right: theme.spacing(1),
+      top: theme.spacing(1),
+      color: theme.palette.grey[500],
+    },
+    root2: {
+      marginBottom:20,
+      marginTop:20,
+      '& > *': {
+        margin: theme.spacing(1),
+        width: '25ch',
+      },
+      
+    },
     topimg:{
 
         backgroundImage: 'linear-gradient(to left, #ffea00, #ff9800)',
@@ -182,10 +207,48 @@ export default function GroupesList() {
     const classes = useStyles();
     const theme = useTheme();
     const [value, setValue] = React.useState(0);
+    const [openG, setOpenG] = React.useState(false);
+    const [openP, setOpenP] = React.useState(false);
+
+    const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
     const handleChange = (event, newValue) => {
       setValue(newValue);
     };
+
+    const handleClickOpenG = () => {
+      setOpenG(true);
+    };
+    const handleCloseG = () => {
+      setOpenG(false);
+    };
+
+
+    const handleClickOpenP = () => {
+      setOpenP(true);
+    };
+    const handleCloseP = () => {
+      setOpenP(false);
+    };
+    const [val, setVal] = React.useState({
+     
+      password: '',
+      
+      showPassword: false,
+    });
+  
+    const pChange = (prop) => (event) => {
+      setVal({ ...val, [prop]: event.target.value });
+    };
+  
+    const handleClickShowPassword = () => {
+      setVal({ ...val, showPassword: !val.showPassword });
+    };
+  
+    const handleMouseDownPassword = (event) => {
+      event.preventDefault();
+    };
+
     return (
         <div className={classes.groupe}>
               <Grid container spacing={2}>
@@ -234,6 +297,9 @@ export default function GroupesList() {
       <TabPanel value={value} index={0} style={{backgroundColor:'#eff4fb'}}>
        <Card style={{borderRadius:15}}>
            <CardContent style={{padding:'10px 16px',display: 'flex'}}>
+
+
+             {/**
            <div className={classes.search} sm={2}>
 
                 <div className={classes.searchIcon}>
@@ -241,15 +307,15 @@ export default function GroupesList() {
                 </div>
 
                 <InputBase
-                    placeholder="Search…"
+                    placeholder="Search…" 
                 classes={{root: classes.inputRoot,input: classes.inputInput,}}inputProps={{ 'aria-label': 'search' }}
                     />
 
-                </div>
+                </div> */}
 
                 <Tooltip disableFocusListener title="Créer un groupe">
           
-                    <Fab className={classes.btnAdd}>
+                    <Fab className={classes.btnAdd} onClick={handleClickOpenG}>
                         <AddIcon />
                     </Fab>
                     </Tooltip>
@@ -269,12 +335,13 @@ export default function GroupesList() {
            <Card  className={classes.root}>
       <CardContent style={{ height: 350,padding:0,width:250,objectFit: 'cover'}}>
       <img  src={process.env.PUBLIC_URL + '/images/i5.jpg'}/>
-
+        
       <Avatar className={classes.image}  src={process.env.PUBLIC_URL + '/images/i6.jpg'}/>
-
+     
       <Link to={"/groupe"} className={classes.titre}>
           Master 2 ISI
       </Link>
+      
      <AvatarGroup max={5} style={{bottom: 280 ,left: 40, position:'relative'}}>
       <Avatar src={process.env.PUBLIC_URL + '/images/avatar.jpg'} />
       <Avatar src={process.env.PUBLIC_URL + '/images/d2.jpg'} />
@@ -283,20 +350,9 @@ export default function GroupesList() {
       <Avatar src={process.env.PUBLIC_URL + '/images/d1.jpg'} />
     </AvatarGroup>
        
-        <Box style={{position: 'relative',bottom: 230,left: 40}}>
-        <Link style={{marginRight:20,fontWeight:600,color:'black',marginLeft:10,textDecoration:'none'}}>
-         240<br/> <span style={{fontWeight:500,}}>Postes</span>
-        </Link>
-
-        </Box>
-
-
-        <Box style={{position: 'relative',bottom: 280,left: 145}}>
-        
-        <Link style={{marginRight:20,fontWeight:600,color:'black',marginLeft:17,textDecoration:'none'}}>
-         100<br/> <span style={{fontWeight:500,}}>Membres</span>
-        </Link>
-        </Box>
+    <Button style={{textTransform:'lowercase',bottom: 240,left: 95,backgroundColor:'#50b5ff',color:'white'}}>
+           Quitter
+       </Button>
       </CardContent>
      
     </Card>
@@ -304,79 +360,7 @@ export default function GroupesList() {
 
 
 
-    <Card className={classes.root}>
-    <CardContent style={{ height: 350,padding:0,width:250}}>
-      <img style={{ height: 100,width:250,objectFit: 'cover'}} src={process.env.PUBLIC_URL + '/images/img11.jpeg'}/>
-      <Avatar className={classes.image} src={process.env.PUBLIC_URL + '/images/avatar.jpg'}/>
-
-       
-      <a className={classes.titre}>
-          Master 2 ISI
-      </a>
-     <AvatarGroup max={5} style={{bottom: 280 ,left: 40, position:'relative'}}>
-      <Avatar src={process.env.PUBLIC_URL + '/images/avatar.jpg'} />
-      <Avatar src={process.env.PUBLIC_URL + '/images/d2.jpg'} />
-      <Avatar src={process.env.PUBLIC_URL + '/images/d3.jpg'} />
-      <Avatar src={process.env.PUBLIC_URL + '/images/p2.jpg'} />
-      <Avatar src={process.env.PUBLIC_URL + '/images/d1.jpg'} />
-    </AvatarGroup>
-       
-        <Box style={{position: 'relative',bottom: 230,left: 40}}>
-        <Link style={{marginRight:20,fontWeight:600,color:'black',marginLeft:10}}>
-         240<br/> <span style={{fontWeight:500,}}>Postes</span>
-        </Link>
-
-        </Box>
-
-
-        <Box style={{position: 'relative',bottom: 280,left: 145}}>
-        
-        <Link style={{marginRight:20,fontWeight:600,color:'black',marginLeft:17}}>
-         100<br/> <span style={{fontWeight:500,}}>Membres</span>
-        </Link>
-        </Box>
-      </CardContent>
-     
-    </Card>
-
-
-
-
-    <Card className={classes.root}>
-    <CardContent style={{ height: 350,padding:0,width:250}}>
-      <img style={{ height: 100,width:250,objectFit: 'cover'}} src={process.env.PUBLIC_URL + '/images/img11.jpeg'}/>
-      <Avatar className={classes.image} src={process.env.PUBLIC_URL + '/images/avatar.jpg'}/>
-
-       
-      <a className={classes.titre}>
-          Master 2 ISI
-      </a>
-     <AvatarGroup max={5} style={{bottom: 280 ,left: 40, position:'relative'}}>
-      <Avatar src={process.env.PUBLIC_URL + '/images/avatar.jpg'} />
-      <Avatar src={process.env.PUBLIC_URL + '/images/d2.jpg'} />
-      <Avatar src={process.env.PUBLIC_URL + '/images/d3.jpg'} />
-      <Avatar src={process.env.PUBLIC_URL + '/images/p2.jpg'} />
-      <Avatar src={process.env.PUBLIC_URL + '/images/d1.jpg'} />
-    </AvatarGroup>
-       
-        <Box style={{position: 'relative',bottom: 230,left: 40}}>
-        <Link style={{marginRight:20,fontWeight:600,color:'black',marginLeft:10}}>
-         240<br/> <span style={{fontWeight:500,}}>Postes</span>
-        </Link>
-
-        </Box>
-
-
-        <Box style={{position: 'relative',bottom: 280,left: 145}}>
-        
-        <Link style={{marginRight:20,fontWeight:600,color:'black',marginLeft:17}}>
-         100<br/> <span style={{fontWeight:500,}}>Membres</span>
-        </Link>
-        </Box>
-      </CardContent>
-     
-    </Card>
-
+    
 
            </div>
       </TabPanel>
@@ -393,6 +377,9 @@ export default function GroupesList() {
 
       <Card style={{borderRadius:15}}>
            <CardContent style={{padding:'10px 16px',display: 'flex'}}>
+
+
+             {/** 
            <div className={classes.search} sm={2}>
 
                 <div className={classes.searchIcon}>
@@ -404,11 +391,14 @@ export default function GroupesList() {
                 classes={{root: classes.inputRoot,input: classes.inputInput,}}inputProps={{ 'aria-label': 'search' }}
                     />
 
-                </div>
+                </div>*/}
+
+
 
                 <Tooltip disableFocusListener title="Créer une page">
           
-                    <Fab className={classes.btnAdd}>
+                    <Fab className={classes.btnAdd} onClick={handleClickOpenP
+                    }>
                         <AddIcon />
                     </Fab>
                     </Tooltip>
@@ -441,7 +431,7 @@ export default function GroupesList() {
 
        <Box style={{position: 'relative',bottom: 280,left: 20}}>
         
-        <Link style={{right:20,fontWeight:600,color:'#3f414d',position:'relative', left:70}}>
+        <Link style={{right:20,fontWeight:600,color:'#3f414d',position:'relative', left:70,textDecoration:'none'}}>
          100 <span style={{fontWeight:500,color:'#777D74'}}>Likes</span>
         </Link>
        </Box>
@@ -451,95 +441,6 @@ export default function GroupesList() {
       </CardContent>
 
 </Card>
-
-
-<Card  className={classes.root} style={{borderRadius:10}}>
-
-<CardContent style={{ height: 350,padding:0,width:250}}>
-<div style={{ height: 100,width:250,}} />
-
-      <Avatar  style={{height:90,width:90,left: 80,bottom: 70}} src={process.env.PUBLIC_URL + '/images/avatar.jpg'}/>
-
-       
-      <a className={classes.titre} style={{bottom:180,left: 80}}>
-          Master 2 ISI
-      </a>
-    
-       
-
-
-       <Box style={{position: 'relative',bottom: 280,left: 20}}>
-        
-        <Link style={{right:20,fontWeight:600,color:'#3f414d',position:'relative', left:70}}>
-         100 <span style={{fontWeight:500,color:'#777D74'}}>Likes</span>
-        </Link>
-       </Box>
-       <Button style={{textTransform:'lowercase',bottom: 240,left: 80,backgroundColor:'#50b5ff',color:'white'}}>
-           ne plus aimer 
-       </Button>
-      </CardContent>
-
- </Card>
-
-
- <Card  className={classes.root} style={{borderRadius:10}}>
-
-<CardContent style={{ height: 350,padding:0,width:250}}>
-<div style={{ height: 100,width:250,}} />
-
-      <Avatar  style={{height:90,width:90,left: 80,bottom: 70}} src={process.env.PUBLIC_URL + '/images/avatar.jpg'}/>
-
-       
-      <a className={classes.titre} style={{bottom:180,left: 80}}>
-          Master 2 ISI
-      </a>
-    
-       
-
-
-       <Box style={{position: 'relative',bottom: 280,left: 20}}>
-        
-        <Link style={{right:20,fontWeight:600,color:'#3f414d',position:'relative', left:70}}>
-         100 <span style={{fontWeight:500,color:'#777D74'}}>Likes</span>
-        </Link>
-       </Box>
-       <Button style={{textTransform:'lowercase',bottom: 240,left: 80,backgroundColor:'#50b5ff',color:'white'}}>
-           ne plus aimer 
-       </Button>
-      </CardContent>
-
-</Card>
-
-
-
-<Card  className={classes.root} style={{borderRadius:10}}>
-
-<CardContent style={{ height: 350,padding:0,width:250}}>
-<div style={{ height: 100,width:250,}} />
-
-      <Avatar  style={{height:90,width:90,left: 80,bottom: 70}} src={process.env.PUBLIC_URL + '/images/avatar.jpg'}/>
-
-       
-      <a className={classes.titre} style={{bottom:180,left: 80}}>
-          Master 2 ISI
-      </a>
-    
-       
-
-
-       <Box style={{position: 'relative',bottom: 280,left: 20}}>
-        
-        <Link style={{right:20,fontWeight:600,color:'#3f414d',position:'relative', left:70}}>
-         100 <span style={{fontWeight:500,color:'#777D74'}}>Likes</span>
-        </Link>
-       </Box>
-       <Button style={{textTransform:'lowercase',bottom: 240,left: 80,backgroundColor:'#50b5ff',color:'white'}}>
-           ne plus aimer 
-       </Button>
-      </CardContent>
-
-</Card>
-
 
 
 
@@ -567,6 +468,155 @@ export default function GroupesList() {
 
 
               </Grid>
+
+
+              {/****************************************ajouter un groupe******************** */}
+
+
+              <div>
+
+                  <Dialog
+                    fullScreen={fullScreen}
+                    open={openG}
+                    onClose={handleCloseG}
+                    
+                  >
+                    <DialogTitle >
+                    <Typography style={{color:'black', fontWeight:700,fontSize:18,textAlign:'center'}}>Créer un groupe</Typography>
+
+                    <IconButton aria-label="close"  className={classes.closeButton} onClick={handleCloseG}>
+                      <CloseIcon />
+                    </IconButton>
+                                
+                    </DialogTitle>
+                    <DialogContent>
+                    <form className={classes.root2}>
+          <TextField size="small"  variant="outlined" label="Nom" />
+          <TextField  size="small" variant="outlined" label="Catégorie"  />
+
+          <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
+            <InputLabel htmlFor="standard-adornment-password">Your Password</InputLabel>
+            <Input
+            id="standard-adornment-password"
+            type={val.showPassword ? 'text' : 'password'}
+            value={val.password}
+            onChange={pChange('password')}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                >
+                  {val.showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            }
+            />
+            </FormControl>
+
+
+         
+
+                    </form>
+
+                 
+                    </DialogContent>
+
+
+
+                    <DialogActions>
+
+
+
+                      <Button variant="outlined" style={{color:'white',backgroundColor:'#50b5ff'}} >
+                        Créer
+                      </Button>
+                    
+                    </DialogActions>
+                  </Dialog>
+</div>
+{/************************************************************************************************* */}
+
+
+
+   {/****************************************ajouter une page******************** */}
+
+
+   <div>
+
+                <Dialog
+                  fullScreen={fullScreen}
+                  open={openP}
+                  onClose={handleCloseP}
+                  
+                >
+                  <DialogTitle >
+                  <Typography style={{color:'black', fontWeight:700,fontSize:18,textAlign:'center'}}>Créer une page</Typography>
+
+                  <IconButton aria-label="close"  className={classes.closeButton} onClick={handleCloseP}>
+                    <CloseIcon />
+                  </IconButton>
+                              
+                  </DialogTitle>
+                  <DialogContent>
+                  <form className={classes.root2}>
+                <TextField style={{marginTop:20}} size="small"  variant="outlined" label="Nom" />
+
+                <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
+                <InputLabel htmlFor="standard-adornment-password">Your Password</InputLabel>
+                <Input
+                id="standard-adornment-password"
+                type={val.showPassword ? 'text' : 'password'}
+                value={val.password}
+                onChange={pChange('password')}
+                endAdornment={
+                <InputAdornment position="end">
+                <IconButton
+                aria-label="toggle password visibility"
+                onClick={handleClickShowPassword}
+                onMouseDown={handleMouseDownPassword}
+                >
+                {val.showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+                </InputAdornment>
+                }
+                />
+                </FormControl>
+
+
+
+
+                  </form>
+
+
+                  </DialogContent>
+
+
+
+                  <DialogActions>
+
+
+
+                    <Button variant="outlined" style={{color:'white',backgroundColor:'#50b5ff'}} >
+                      Créer
+                    </Button>
+                  
+                  </DialogActions>
+                </Dialog>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+              
         </div>
     )
 }

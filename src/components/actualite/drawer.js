@@ -77,6 +77,7 @@ display:'none',
     color:'black',
     fontWeight:500,
     height:20,
+    textDecoration:'none'
   },
   toolbar: {
     display: 'flex',
@@ -170,6 +171,19 @@ display:'none',
    
     fontSize:27,
   },
+  msg:{
+    backgroundColor: '#50b5ff',
+    textDecoration:'none',
+    textAlign:'center',
+    fontSize: 17,width:'100%',
+    color:'white',
+    borderWidth: 0,
+    paddingRight: 40,
+    paddingLeft: 43,
+    height: 50,
+    paddingTop: 5,
+    paddingBottom: 5,
+  }
 }));
  
 
@@ -236,7 +250,7 @@ const NavBar= () => {
                 <Link to={"/"} > <img alt="logo" src={process.env.PUBLIC_URL + '/images/logo4.jpg'}
                             style={{width: 87, height: 53,marginBottom:7}} /> </Link>
 
-                            {/********barre de recherche *********/}
+                            {/********barre de recherche *********
 
 
                             <Hidden only={['xs','sm']}>
@@ -256,7 +270,7 @@ const NavBar= () => {
                 </Hidden>
 
              <Hidden only={['lg','md','xl']}>  <IconButton  onClick={handleClickR} > 
-               <SearchIcon style={{color:'#50b5ff'}} /></IconButton> </Hidden>
+               <SearchIcon style={{color:'#50b5ff'}} /></IconButton> </Hidden>/}
                
                        
                          {/********right buttons *********/}
@@ -269,7 +283,7 @@ const NavBar= () => {
                         <Button style={{textTransform:'lowercase'}}>
                            <Avatar alt="Remy Sharp" src={process.env.PUBLIC_URL + '/images/avatar.jpg'}
                             style={{width: 40, height: 40}} />
-                            <h6 href="#text-buttons" className={classes.name}> Lamia </h6>      
+                            <Link to={"/myProfil"} className={classes.name}> Lamia </Link>      
                         </Button>
 
                    </Tooltip>
@@ -284,13 +298,13 @@ const NavBar= () => {
                             </Button>
                               </Hidden>
 
-                             
+                        {/**   
                   <Tooltip disableFocusListener title="notifications">
 
                      <IconButton aria-label="show new notifications"  button onClick={handleClick1} aria-controls="notification"
                      style={{color:'#50b5ff',paddingTop:0,paddingBottom: 0,height: 45,top:12,}}>
                          
-                          {/********notifications number*********/}
+                          ********notifications number*********
 
                           <Badge badgeContent={7} color="secondary">
                             <NotificationsIcon 
@@ -302,7 +316,7 @@ const NavBar= () => {
                     
 
 
-                          {/********notifications liste*********/}
+                          ********notifications liste*********
 
 
                      <Menu  
@@ -371,9 +385,12 @@ const NavBar= () => {
                                   </MenuItem>
                              </Link>
                                   
-                              </Menu>
+                              </Menu> */}  
 
                       
+
+
+
                          
                   <Tooltip disableFocusListener title="Message">
 
@@ -412,12 +429,13 @@ const NavBar= () => {
                         >
 
 
-                          <Button  href="#" style={{backgroundColor: '#50b5ff',textTransform: 'lowercase',
-                          fontSize: 17,width:'100%',color:'white'}}>
-                            Ouvrir dans Messagerie</Button>
+                          <Link  className={classes.msg}
+                        
+                        to={"/messages"}style={{}}>
+                            Ouvrir dans Messagerie</Link>
 
 
-                        <Link href="#" color="inherit">
+                        <Link to={"/messages"} color="inherit" style={{textDecoration:'none'}}>
 
                               <MenuItem>
 
@@ -427,7 +445,9 @@ const NavBar= () => {
                               style={{ width: 50,height: 50, marginRight:25 }} />
 
                                       <Typography>
-                                      <a  style={{ fontWeight: 600,marginRight:5}}>Paule Molive</a> <br/>
+                                      <a  style={{ fontWeight: 600,marginRight:5,color:'black',}}>
+                                        
+                                        Paule Molive</a> <br/>
                                       <small  style={{ fontSize: 15, color:'#777d74'}}>salut Coucou CV bien?</small> 
                                       </Typography>
                                 
@@ -437,42 +457,11 @@ const NavBar= () => {
                         </Link>
 
 
-                        <Link href="#" color="inherit">
-                                <MenuItem>
-
-
-                              <Avatar alt="Remy Sharp" src={process.env.PUBLIC_URL + '/images/p5.jpg'} 
-                              style={{ width: 50,height: 50, marginRight:25 }} />
-
-                                      <Typography>
-                                      <a style={{ fontWeight: 600,marginRight:5}}>Anna Sthesia</a>
-                                      <br/>
-                                      <small  style={{ fontSize: 15, color:'#777d74'}}>Bonjour</small> 
-                                      </Typography>
-                                
-
-                                </MenuItem>
-
-                          </Link>
+                        
 
 
 
-                          <Link href="#" color="inherit">
-                                <MenuItem>
-
-
-                              <Avatar alt="Remy Sharp" src={process.env.PUBLIC_URL + '/images/img2.jpg'} 
-                              style={{ width: 50,height: 50, marginRight:25 }} />
-
-                                      <Typography>
-                                      <a style={{ fontWeight: 600,marginRight:5}}>Anna Sthesia</a>   <br/>
-                                      <small  style={{ fontSize: 15, color:'#777d74'}}>Bonjour</small>                                   
-                                      </Typography>
-                                
-
-                                </MenuItem>
-                          </Link>
-                                
+                         
                             </Menu>
 
 

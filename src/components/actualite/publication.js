@@ -245,18 +245,7 @@ export default function Publication() {
                           >
 
 
-                                 <StyledMenuItem >
-
-                                      <ListItemIcon>
-                                        <SaveAltOutlinedIcon fontSize="small" />
-                                      </ListItemIcon>
-
-                                      <ListItemText >
-                                        <Typography>
-                                        Enregistrer 
-                                        </Typography>
-                                      </ListItemText>
-                                   </StyledMenuItem>
+                               
 
                                   <StyledMenuItem 
                                   component="button"
@@ -402,11 +391,8 @@ export default function Publication() {
                         </IconButton>
 
                       
-                        <IconButton aria-label="share">
-
-                          <ShareIcon style={{color:'#50b5ff'}} />
-
-                        </IconButton>
+                     
+                       
 
                                 
                 </CardActions>

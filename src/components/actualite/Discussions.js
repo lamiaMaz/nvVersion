@@ -176,7 +176,7 @@ const Discussions = () => {
           
           </Box>
 
-                          {/********barre de recherche *********/}
+                          {/********barre de recherche *********
                           <div className={clsx( {
                             [classes.hide]: !open,
                           })}>
@@ -195,7 +195,7 @@ const Discussions = () => {
                   inputProps={{ 'aria-label': 'search' }}
                     />
 
-                </div></div>
+                        </div></div>*/}
         <List  style={{ overflowX:'hidden'}}>
       
 

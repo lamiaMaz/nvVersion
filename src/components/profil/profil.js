@@ -1,33 +1,23 @@
 import React from 'react';
 import clsx from 'clsx';
-import {Grid,Container,Box,Hidden,Avatar,Card, CardContent,Typography,GridList, Divider,IconButton,Button,Paper,
-TextField,DialogActions,} from '@material-ui/core';
+import { makeStyles, useTheme, } from '@material-ui/core/styles';
+import {Grid,Container,Box,Hidden,Avatar,Card, CardContent,Typography,GridList, Divider,IconButton,Button,Tabs,Tab,AppBar
+,TextField,DialogActions,Dialog,useMediaQuery ,DialogContent,DialogTitle,Select,Input,InputLabel ,
+InputAdornment, FormControl,} from '@material-ui/core';
 import NavBar from '../actualite/drawer';
 import Discussions from '../actualite/Discussions'
-import { makeStyles, useTheme, } from '@material-ui/core/styles';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
 import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
 import Publication from '../actualite/publication'
 import SwipeableViews from 'react-swipeable-views';
 import {FiEdit} from 'react-icons/fi';
-import Dialog from '@material-ui/core/Dialog';
 import CloseIcon from '@material-ui/icons/Close';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Select from '@material-ui/core/Select';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import FormControl from '@material-ui/core/FormControl';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import {Link} from 'react-router-dom'
 import AfficheGroup from './afficheGroup'
-
+import AfficheAbonnement from './afficheAbonnement';
+import AfficheAbonnés from './afficheAbonnés';
+import About from './about';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -111,12 +101,22 @@ const useStyles = makeStyles((theme) => ({
         marginRight:10,
         marginLeft:'auto'
       },
-      tab:{
-        '&.MuiBox-root':{
-paddingLeft:0,
-paddingRight:0
-        }
+     
+      mytab:{
+        '& .MuiBox-root':{
+          paddingTop:20,
+          paddingBottom:20,
+          paddingRight:0,
+          paddingLeft:0,
+            },
       },
+      img:{
+        width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    textAlign: 'center',
+    borderRadius:15
+      }
   }));
  
   
@@ -261,14 +261,7 @@ function Profil (){
 
                     style={{width:'100%',height:'100%',objectFit: 'cover',borderRadius: '20px 20px 0px 0px'}} />
  
- {/**         
- <input accept="image/*" className={classes.input} id="icon-button-file" type="file" />
-      <label htmlFor="icon-button-file">
-        <IconButton color="primary" aria-label="upload picture" component="span">
-          <PhotoCamera />
-        </IconButton>
-      </label>
-*/}    
+  
 
                   {/***********************************  nom utilisateur**************************************** */}
                   <Card>
@@ -279,7 +272,7 @@ function Profil (){
 
 
      <h6 style={{fontSize:23,fontWeight:700,textAlign:'center', marginTop: 35,marginBottom:30}}>Josephine Williams <br/>
-     <IconButton onClick={handleClickOpen}> <FiEdit  color='#212121' /></IconButton></h6>
+    </h6>
 
       
 
@@ -303,112 +296,6 @@ function Profil (){
        
 
 
-            {/***********************************  modifier le profil**************************************** */}
-
-
-
-            <div>
-     
-                  <Dialog
-                    fullScreen={fullScreen}
-                    open={open}
-                    onClose={handleClose}
-                    
-                  >
-                    <DialogTitle >
-                    <Typography style={{color:'black', fontWeight:700,fontSize:18,textAlign:'center'}}>modifier le profil</Typography>
-
-                    <IconButton aria-label="close"  className={classes.closeButton} onClick={handleClose}>
-                      <CloseIcon />
-                    </IconButton>
-                                
-                    </DialogTitle>
-                    <DialogContent>
-                      <Typography style={{color:'grey', fontWeight:600,marginBottom:15}}>Vos Informations</Typography>
-                    <form className={classes.root2}>
-                            <TextField size="small"  variant="outlined" label="Nom"defaultValue="Mazouz" />
-                            <TextField size="small"  variant="outlined" label="Prénom"defaultValue="Lamia" />
-                            <TextField size="small" type="email"  variant="outlined" label="Adresse Mail"defaultValue="Mazouz@gmail.com" />
-                            <TextField type="date" size="small" variant="outlined" label="date de naissance" defaultValue="23/12/96" />
-
-                      
-                 
-
-                            <TextField style={{width:'40ch'}} variant="outlined" label="Bio" multiline rows={4}
-                            
-                            defaultValue=" Lorem ipsum dolor sit amet, consectetuer adipiscing elit" />
-
-                    </form>
-
-                    <Divider/>
-
-
-
-                    <form className={classes.root2}>
-                <TextField size="small"  variant="outlined" label="Université" defaultValue="Tizi-Ouzou" />
-                <TextField size="small" style={{ width: '40ch'}}  variant="outlined" label="Faculté" defaultValue="Genie électrique et informatique" />
-                <TextField size="small" variant="outlined" label="Département" defaultValue="Informatique" />
-                <TextField size="small" variant="outlined" label="Spécialité" defaultValue="ISI" />
-                <FormControl size="small"  htmlFor="outlined-age-native-simple">
-                  <InputLabel>Niveau</InputLabel>
-                  <Select
-                    native
-                    value={state.age}
-                    onChange={change}
-                    label="Age"
-                    inputProps={{
-                      name: 'age',
-                      id: 'outlined-age-native-simple',
-                      
-                    }}
-                  >
-                    <option aria-label="None" value="" />
-                    <option value={1}>L1</option>
-                    <option value={2}>L2</option>
-                    <option value={3}>L3</option>
-                    <option value={4}>Master 1</option>
-                    <option value={5}>Master 2</option>
-
-                        </Select>
-                      </FormControl>
-                    
-                      <FormControl className={clsx(classes.margin, classes.textField)} variant="outlined">
-          <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
-          <Input
-            id="standard-adornment-password"
-            type={val.showPassword ? 'text' : 'password'}
-            value={val.password}
-            onChange={pChange('password')}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                >
-                  {val.showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              </InputAdornment>
-            }
-          />
-        </FormControl>
-
-                    </form>
-                    </DialogContent>
-
-
-
-                    <DialogActions>
-
-
-
-                      <Button variant="outlined" style={{color:'white',backgroundColor:'#50b5ff'}} >
-                        Modifier
-                      </Button>
-                    
-                    </DialogActions>
-                  </Dialog>
-    </div>
       
 
    
@@ -426,8 +313,10 @@ function Profil (){
  
 
 
-        <AppBar position="static" color="white" style={{marginTop:20}}>
+        <AppBar position="static" color="white" >
         <Tabs
+             
+
           value={value}
           onChange={handleChange}
           indicatorColor="primary"
@@ -457,7 +346,7 @@ function Profil (){
 
       {/*********************************** publications**************************************** */}
 
-     <TabPanel value={value} index={0} dir={theme.direction}>
+     <TabPanel value={value} index={0} dir={theme.direction}  className={classes.mytab}>
          {/*********************************** Bio**************************************** */}
 
          <Grid xs={12} sm={12} md={12} lg={12} xl={12} spacing={0}
@@ -516,12 +405,12 @@ function Profil (){
            <h6 style={{fontSize:17,fontWeight:700,marginTop: 10 ,marginBottom: 30,}}> Photo Gallery</h6>
 
 
-           <GridList cellHeight={76}  className={classes.gridList} cols={3}>
+           <GridList cellHeight={80}  className={classes.gridList} cols={3}>
         
-            <img src={process.env.PUBLIC_URL + '/images/i9.jpg'} onClick={handleClickOpenp} />
-            <img src={process.env.PUBLIC_URL + '/images/img.jpg'} />
-            <img src={process.env.PUBLIC_URL + '/images/img5.jpg'} />
-            <img src={process.env.PUBLIC_URL + '/images/img6.png'} />
+            <img className={classes.img} src={process.env.PUBLIC_URL + '/images/i9.jpg'} onClick={handleClickOpenp} />
+            <img className={classes.img} src={process.env.PUBLIC_URL + '/images/img.jpg'} />
+            <img className={classes.img} src={process.env.PUBLIC_URL + '/images/img5.jpg'} />
+            <img className={classes.img}src={process.env.PUBLIC_URL + '/images/img6.png'} />
        
       </GridList>
           
@@ -532,7 +421,7 @@ function Profil (){
               <Grid item xs={3} sm={5} md={7} lg={8} xl={12}>
 
               <Dialog onClose={handleClosep}  open={openp}>
-              <img style={{width:'100%',height:'100%'}} src={process.env.PUBLIC_URL + '/images/img2.jpg'}/>
+              <img className={classes.img}  src={process.env.PUBLIC_URL + '/images/img2.jpg'}/>
 
               
 
@@ -622,8 +511,8 @@ function Profil (){
 
     {/*********************************** a propos**************************************** */}
 
-        <TabPanel value={value} index={1} >
-          Item One
+        <TabPanel value={value} index={1}  className={classes.mytab} >
+          <About/>
         </TabPanel>
 
 
@@ -631,90 +520,35 @@ function Profil (){
      {/***********************************  abonnes**************************************** */}
 
 
-     <TabPanel  value={value} index={2} dir={theme.direction}style={{backgroundColor:'#eff4fb'}}>
+     <TabPanel  value={value} index={2} dir={theme.direction}  className={classes.mytab}>
 
-
+<AfficheAbonnés/>
 
      
       </TabPanel>
 
  {/***********************************  abonnements**************************************** */}
 
- <TabPanel value={value} index={3} dir={theme.direction}>
+     <TabPanel value={value} index={3} dir={theme.direction}  className={classes.mytab}>
          
-         
- <Grid  item xs={12} sm={12}lg={12}>
-          <Grid item xs={12} sm={12}lg={6} style={{marginLeft:'auto',marginRight:'auto'}}>
-         <Card style={{ backgroundColor: '#fafafa'}}>
-           <CardContent>
-
-                  <Box display='flex' style={{marginBottom:15,marginTop:10}}>
-                <Avatar  src={process.env.PUBLIC_URL + '/images/img4.jpg'}/>
-
-              <Link to={'/profil'}
-               style={{ fontSize:14,fontWeight:600,color:'black',marginLeft:20,textDecoration:'none',marginTop:10}}>
-                Mazouz Lamia </Link> <br/>
-            <Button variant="outlined" className={classes.btnR}>se désabonner</Button>
-                </Box>
-
-
-
-
-                <Box display='flex' style={{marginBottom:15,marginTop:10}}>
-                <Avatar  src={process.env.PUBLIC_URL + '/images/img4.jpg'}/>
-
-              <Link to={'/profil'}
-               style={{ fontSize:14,fontWeight:600,color:'black',marginLeft:20,textDecoration:'none',marginTop:10}}>
-                Mazouz Lamia </Link> <br/>
-            <Button variant="outlined" className={classes.btnR}>se désabonner</Button>
-                </Box>
-
-
-
-                <Box display='flex' style={{marginBottom:15,marginTop:10}}>
-                <Avatar  src={process.env.PUBLIC_URL + '/images/img4.jpg'}/>
-
-              <Link to={'/profil'}
-               style={{ fontSize:14,fontWeight:600,color:'black',marginLeft:20,textDecoration:'none',marginTop:10}}>
-                Mazouz Lamia </Link> <br/>
-            <Button variant="outlined" className={classes.btnR}>se désabonner</Button>
-                </Box>
-
-
-
-                <Box display='flex' style={{marginBottom:15,marginTop:10}}>
-                <Avatar  src={process.env.PUBLIC_URL + '/images/img4.jpg'}/>
-
-              <Link to={'/profil'}
-               style={{ fontSize:14,fontWeight:600,color:'black',marginLeft:20,textDecoration:'none',marginTop:10}}>
-                Mazouz Lamia </Link> <br/>
-            <Button variant="outlined" className={classes.btnR}>se désabonner</Button>
-                </Box>
-
-            
-           </CardContent>
-         </Card>
-         </Grid>
-         </Grid>
-
-
+    <AfficheAbonnement/>
 
         </TabPanel>
 
        {/*********************************** photos**************************************** */}
 
-        <TabPanel value={value} index={4} dir={theme.direction}>
+        <TabPanel value={value} index={4} dir={theme.direction}  className={classes.mytab}>
         <Card style={{ marginBottom: 25,borderRadius:15 }}>
          <CardContent>
-           <h6 style={{fontSize:17,fontWeight:700,marginTop: 10 ,marginBottom: 30,}}> Photo Gallery</h6>
+           <h6 style={{fontSize:19,fontWeight:700,marginTop: 10 ,marginBottom: 30,textAlign:'center'}}> Photo Gallery</h6>
 
 
-           <GridList cellHeight={200}  className={classes.gridList} cols={3}>
+           <GridList cellHeight={250}  className={classes.gridList} cols={3}>
         
-            <img src={process.env.PUBLIC_URL + '/images/i9.jpg'} onClick={handleClickOpenp} />
-            <img src={process.env.PUBLIC_URL + '/images/img.jpg'} />
-            <img src={process.env.PUBLIC_URL + '/images/img5.jpg'} />
-            <img src={process.env.PUBLIC_URL + '/images/img6.png'} />
+            <img className={classes.img}   src={process.env.PUBLIC_URL + '/images/i9.jpg'} onClick={handleClickOpenp} />
+            <img className={classes.img} src={process.env.PUBLIC_URL + '/images/img.jpg'} />
+            <img className={classes.img}  src={process.env.PUBLIC_URL + '/images/img5.jpg'} />
+            <img className={classes.img} src={process.env.PUBLIC_URL + '/images/img6.png'} />
        
       </GridList>
           
@@ -735,7 +569,7 @@ function Profil (){
 
         {/***********************************  groupes et pages**************************************** */}
 
-        <TabPanel value={value} index={5} dir={theme.direction}>
+        <TabPanel value={value} index={5} dir={theme.direction}  className={classes.mytab}>
           <AfficheGroup/>
         </TabPanel>
 

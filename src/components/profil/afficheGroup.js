@@ -1,8 +1,7 @@
 import React from 'react'
-import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import {Link} from 'react-router-dom'
-import {Grid,Box,Paper,Container,Card,CardContent,Typography, AppBar,Tabs,Tab,InputBase,Tooltip,Avatar,Button } from '@material-ui/core';
+import {Box,Paper,Typography,Avatar, } from '@material-ui/core';
 import { AvatarGroup } from '@material-ui/lab';
 
 
@@ -41,10 +40,19 @@ const useStyles = makeStyles((theme) => ({
     height:50,
     left: 80,
     right: 80,
-    bottom: 170,
+    bottom: 130,
     color:'black',
     textDecoration:'none',
-  }
+  },
+  titel:{
+    fontSize: 18,
+    fontWeight: 700,
+    marginBottom: 20,
+    textDecoration: 'underline',
+    marginTop:20,
+    textAlign:'center',
+    color:'black',
+  },
 }));
 
 
@@ -52,38 +60,6 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`vertical-tabpanel-${index}`}
-      aria-labelledby={`vertical-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box p={3}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-}
-
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
-};
-
-function a11yProps(index) {
-  return {
-    id: `vertical-tab-${index}`,
-    'aria-controls': `vertical-tabpanel-${index}`,
-  };
-}
 
 
 
@@ -94,113 +70,66 @@ function a11yProps(index) {
 export default function AfficheGroup() {
 
     const classes = useStyles();
-  const [value, setValue] = React.useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+  
     return (
+      <div>
+
+
+        {/********************************partie groupes********************* */}
+
+
+
+        <Typography className={classes.titel}>Groupes</Typography>
       <div className={classes.root}>
-      <Paper elevation={3} style={{ height: 350,padding:0,width:250}} >
+      <Paper elevation={3} style={{ height: 300,padding:0,width:250}} >
       <img style={{ height: 100,width:250,objectFit: 'cover'}} src={process.env.PUBLIC_URL + '/images/img11.jpeg'}/>
       <Avatar className={classes.image} src={process.env.PUBLIC_URL + '/images/avatar.jpg'}/>
       <Link to={"/groupe"} className={classes.titre}>
           Master 2 ISI
       </Link>
-      <AvatarGroup max={5} style={{bottom: 280 ,left: 40, position:'relative'}}>
-      <Avatar src={process.env.PUBLIC_URL + '/images/avatar.jpg'} />
-      <Avatar src={process.env.PUBLIC_URL + '/images/d2.jpg'} />
-      <Avatar src={process.env.PUBLIC_URL + '/images/d3.jpg'} />
-      <Avatar src={process.env.PUBLIC_URL + '/images/p2.jpg'} />
-      <Avatar src={process.env.PUBLIC_URL + '/images/d1.jpg'} />
-    </AvatarGroup>
+     
        
-        <Box style={{position: 'relative',bottom: 230,left: 40}}>
-        <Link style={{marginRight:20,fontWeight:600,color:'black',marginLeft:10,textDecoration:'none'}}>
-         240<br/> <span style={{fontWeight:500,}}>Postes</span>
-        </Link>
-
-        </Box>
-
-
-        <Box style={{position: 'relative',bottom: 280,left: 145}}>
-        
-        <Link style={{marginRight:20,fontWeight:600,color:'black',marginLeft:17,textDecoration:'none'}}>
-         100<br/> <span style={{fontWeight:500,}}>Membres</span>
-        </Link>
-        </Box>
+      
       </Paper>
 
 
 
 
-      <Paper elevation={3} style={{ height: 350,padding:0,width:250}} >
+    </div>
 
-      <img style={{ height: 100,width:250,objectFit: 'cover'}} src={process.env.PUBLIC_URL + '/images/img11.jpeg'}/>
-      <Avatar className={classes.image} src={process.env.PUBLIC_URL + '/images/avatar.jpg'}/>
+
+
+
+           {/*******************************partie pages**************************** */}
+
+
+
+    <Typography className={classes.titel}>Pages</Typography>
+
+
+    <div className={classes.root}>
+      <Paper elevation={3} style={{ height: 200,padding:0,width:250}} >
+
+      
+<div style={{height:90,width:'100%',}}>
+<img style={{height:'100%',width:'100%',}} src={process.env.PUBLIC_URL + '/images/avatar.jpg'}/>
+
+</div>
       <Link to={"/groupe"} className={classes.titre}>
           Master 2 ISI
       </Link>
-      <AvatarGroup max={5} style={{bottom: 280 ,left: 40, position:'relative'}}>
-      <Avatar src={process.env.PUBLIC_URL + '/images/avatar.jpg'} />
-      <Avatar src={process.env.PUBLIC_URL + '/images/d2.jpg'} />
-      <Avatar src={process.env.PUBLIC_URL + '/images/d3.jpg'} />
-      <Avatar src={process.env.PUBLIC_URL + '/images/p2.jpg'} />
-      <Avatar src={process.env.PUBLIC_URL + '/images/d1.jpg'} />
-    </AvatarGroup>
-       
-        <Box style={{position: 'relative',bottom: 230,left: 40}}>
-        <Link style={{marginRight:20,fontWeight:600,color:'black',marginLeft:10,textDecoration:'none'}}>
-         240<br/> <span style={{fontWeight:500,}}>Postes</span>
-        </Link>
-
-        </Box>
-
-
-        <Box style={{position: 'relative',bottom: 280,left: 145}}>
-        
-        <Link style={{marginRight:20,fontWeight:600,color:'black',marginLeft:17,textDecoration:'none'}}>
-         100<br/> <span style={{fontWeight:500,}}>Membres</span>
-        </Link>
-        </Box>
+     
+  
+      
+     
       </Paper>
 
 
 
 
-      <Paper elevation={3}  style={{ height: 350,padding:0,width:250}}>
+     
 
-
-      <img style={{ height: 100,width:250,objectFit: 'cover'}} src={process.env.PUBLIC_URL + '/images/img11.jpeg'}/>
-      <Avatar className={classes.image} src={process.env.PUBLIC_URL + '/images/avatar.jpg'}/>
-      <Link to={"/groupe"} className={classes.titre}>
-          Master 2 ISI
-      </Link>
-      <AvatarGroup max={5} style={{bottom: 280 ,left: 40, position:'relative'}}>
-      <Avatar src={process.env.PUBLIC_URL + '/images/avatar.jpg'} />
-      <Avatar src={process.env.PUBLIC_URL + '/images/d2.jpg'} />
-      <Avatar src={process.env.PUBLIC_URL + '/images/d3.jpg'} />
-      <Avatar src={process.env.PUBLIC_URL + '/images/p2.jpg'} />
-      <Avatar src={process.env.PUBLIC_URL + '/images/d1.jpg'} />
-    </AvatarGroup>
-       
-        <Box style={{position: 'relative',bottom: 230,left: 40}}>
-        <Link style={{marginRight:20,fontWeight:600,color:'black',marginLeft:10,textDecoration:'none'}}>
-         240<br/> <span style={{fontWeight:500,}}>Postes</span>
-        </Link>
-
-        </Box>
-
-
-        <Box style={{position: 'relative',bottom: 280,left: 145}}>
-        
-        <Link style={{marginRight:20,fontWeight:600,color:'black',marginLeft:17,textDecoration:'none'}}>
-         100<br/> <span style={{fontWeight:500,}}>Membres</span>
-        </Link>
-        </Box>
-
-      </Paper>
-
+    </div>
 
 
 
