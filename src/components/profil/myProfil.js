@@ -293,13 +293,14 @@ function TabPanel(props) {
 
 
    
-
+<div style={{textAlign:'center'}}>
       <Badge
         overlap="circle"
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'right',
         }}
+        style={{bottom:120}}
         badgeContent={<label htmlFor="icon-button-file" >
         <IconButton color="primary" aria-label="upload picture" component="span">
           <PhotoCamera />
@@ -308,7 +309,7 @@ function TabPanel(props) {
       >
 <Avatar className={classes.image}  src={process.env.PUBLIC_URL + '/images/profil.jpg'}/>
       </Badge>
-
+      </div>
  {/***********************************  modifier le profil**************************************** */}
 
 

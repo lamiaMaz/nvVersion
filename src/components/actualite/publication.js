@@ -224,16 +224,16 @@ export default function Publication() {
                                 }}>1 Mars 2021</small>
                             </Typography>
 
-                            <IconButton onClick={handleClick} 
+                     {/**      <IconButton onClick={handleClick} 
                         
                         >
                                             <MoreVertIcon  />
-                                          </IconButton>
+                                          </IconButton> */} 
                        </Box>
 
                                   
                        
-                          <StyledMenu
+                    {/**      <StyledMenu
                                 id="customized-menu"
                                 anchorEl={anchorEl}
                                 keepMounted
@@ -266,7 +266,7 @@ export default function Publication() {
                                   </StyledMenuItem>
 
                                   
-                          </StyledMenu>
+                          </StyledMenu> */}
 
 
                       <Typography variant="body2" color="textSecondary" component="p">
@@ -279,11 +279,11 @@ export default function Publication() {
 
                                                  {/*********publication photo ********/}
 
-                <CardMedia
+          {/**      <CardMedia
                   className={classes.media}
                   image={process.env.PUBLIC_URL + '/images/pub.jpg'}
                   title="Paella dish"
-                />
+                />*/} 
                 
                                                  {/*********publication icons ********/}
 
@@ -310,7 +310,7 @@ export default function Publication() {
                                      100 J'aime</a>
 
                                 
-                              {/**mentions J'aime */}
+                              {/**mentions J'aime 
 
                               <Dialog  onClose={modalClose} aria-labelledby="customized-dialog-title" open={open}>
                                 <DialogTitle id="customized-dialog-title" onClose={modalClose}>
@@ -368,7 +368,7 @@ export default function Publication() {
                                   </List>
                                 </DialogContent>
                               
-      </Dialog>
+      </Dialog>*/}
 
 
 

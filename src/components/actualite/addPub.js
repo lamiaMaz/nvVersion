@@ -96,9 +96,10 @@ export default function AddPub() {
        {emojiPicker}
         
       </CardContent>
-      <Divider />
+     <Divider />
      
-      <CardActions disableSpacing style={{ }}>
+      <CardActions disableSpacing >
+          {/**
         <IconButton aria-label="add to favorites">
         <AddPhotoAlternateIcon  style={{ color: 'darkmagenta', }}/>
 
@@ -117,7 +118,7 @@ export default function AddPub() {
         <IconButton aria-label="share">
         <AttachFileIcon  style={{ color: 'blue',}}/>
         </IconButton>
-     
+     */}
         <IconButton style={{ color: 'crimson',}}
           className={classes.expand}
           
