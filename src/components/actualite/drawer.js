@@ -247,10 +247,13 @@ const NavBar= () => {
                 </IconButton>
                     
                 </Hidden>
-                <Link to={"/"} > <img alt="logo" src={process.env.PUBLIC_URL + '/images/logo4.jpg'}
-                            style={{width: 87, height: 53,marginBottom:7}} /> </Link>
+            {/**    <Link to={"/"} > <img alt="logo" src={process.env.PUBLIC_URL + '/images/logo4.jpg'}
+                            style={{width: 87, height: 53,marginBottom:7}} /> </Link>*/} 
 
-                            {/********barre de recherche *********
+
+                            
+
+                            {/********barre de recherche *********/}
 
 
                             <Hidden only={['xs','sm']}>
@@ -270,7 +273,7 @@ const NavBar= () => {
                 </Hidden>
 
              <Hidden only={['lg','md','xl']}>  <IconButton  onClick={handleClickR} > 
-               <SearchIcon style={{color:'#50b5ff'}} /></IconButton> </Hidden>/}
+               <SearchIcon style={{color:'#50b5ff'}} /></IconButton> </Hidden>
                
                        
                          {/********right buttons *********/}

@@ -36,7 +36,9 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: 'auto',
     
     },
-   
+    input: {
+      display: 'none',
+    },
    
   }));
 
@@ -99,11 +101,24 @@ export default function AddPub() {
      <Divider />
      
       <CardActions disableSpacing >
-          {/**
-        <IconButton aria-label="add to favorites">
+        
+
+      <input
+        accept="image/*"
+        className={classes.input}
+        id="contained-button-file"
+        multiple
+        type="file"
+      />
+      <label htmlFor="contained-button-file">
+      <IconButton >
         <AddPhotoAlternateIcon  style={{ color: 'darkmagenta', }}/>
 
         </IconButton>
+      </label>
+
+
+       
         <IconButton 
         
         onClick={triggerPicker}
@@ -113,12 +128,18 @@ export default function AddPub() {
         </IconButton>
 
        
-
-
-        <IconButton aria-label="share">
+        <input accept="image/*" className={classes.input} id="icon-button-file" type="file" />
+      <label htmlFor="icon-button-file">
+      <IconButton >
         <AttachFileIcon  style={{ color: 'blue',}}/>
         </IconButton>
-     */}
+      </label>
+
+
+
+
+       
+   
         <IconButton style={{ color: 'crimson',}}
           className={classes.expand}
           
