@@ -1,0 +1,11 @@
+body{
+   /* background-color: #2cabee;
+   background-color: rgb(15, 1, 94);
+    background-image: radial-gradient(at 50% 100%, rgba(123, 22, 255, 0.75), rgb(15, 1, 94));*/
+    background-image: url('./b.png');
+  /*  background-size: cover;*/
+    background-repeat: 'no-repeat';
+    object-fit: cover;
+}
+
+ 

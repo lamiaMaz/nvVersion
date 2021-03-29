@@ -18,7 +18,7 @@ import { BrowserRouter, Switch, Route,Link} from 'react-router-dom'
 const drawerWidth = 300;
  
 const useStyles = makeStyles((theme) => ({
-  root: {
+  root: { 
     display: 'flex',
     '& .MuiList-padding':{
       paddingTop:0,
@@ -516,7 +516,7 @@ const NavBar= () => {
 
 
         <BottomNavigationAction
-         className={classes.navigationBtn} label="Home" icon={<Link to={"/"}style={{color:'grey'}} >  <FaHome />
+         className={classes.navigationBtn} label="Home" icon={<Link to={"/actualite"}style={{color:'grey'}} >  <FaHome />
          </Link>} /> 
 
 
@@ -575,7 +575,7 @@ const NavBar= () => {
                   
           <List style={{marginTop:90}}>
 
-          <Link  to={"/"} style={{textDecoration:'none'}} >
+          <Link  to={"/actualite"} style={{textDecoration:'none'}} >
 
               <ListItem button style={{paddingLeft: 16,paddingRight: 16,right: 5,marginBottom:10}}>
 
