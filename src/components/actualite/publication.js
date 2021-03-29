@@ -310,7 +310,7 @@ export default function Publication() {
                                      100 J'aime</a>
 
                                 
-                              {/**mentions J'aime 
+                              {/**mentions J'aime **/}
 
                               <Dialog  onClose={modalClose} aria-labelledby="customized-dialog-title" open={open}>
                                 <DialogTitle id="customized-dialog-title" onClose={modalClose}>
@@ -327,48 +327,17 @@ export default function Publication() {
                                         </ListItemIcon>
 
                                         <Typography style={{fontSize:16,  }}>  <a >Anna Sthesia</a> <br/></Typography>
-                                        <a
-                                        className={classes.buttonAbn}
-                                          component="button"
-                                        >S'abonner</a>
-
-                                    </ListItem>
-
-
-                                    <ListItem >
-                                      
-                                    <ListItemIcon>
-
-                                        <Avatar alt="Remy Sharp" src={process.env.PUBLIC_URL + '/images/d5.jpg'}  />
                                         
-                                        </ListItemIcon>
-
-                                        <Typography style={{fontSize:16,  }}>  <a >Anna Sthesia</a> <br/></Typography>
-                                        <a
-                                        className={classes.buttonAbn}
-                                          component="button"
-                                        >S'abonner</a>
 
                                     </ListItem>
-                                    <ListItem >
-                                      
-                                    <ListItemIcon>
 
-                                        <Avatar alt="Remy Sharp" src={process.env.PUBLIC_URL + '/images/d5.jpg'}  />
-                                        
-                                        </ListItemIcon>
 
-                                        <Typography style={{fontSize:16,  }}>  <a >Anna Sthesia</a> <br/></Typography>
-                                        <a
-                                        className={classes.buttonAbn}
-                                          component="button"
-                                        >Contacter</a>
-
-                                    </ListItem>
+                                   
+                                   
                                   </List>
                                 </DialogContent>
                               
-      </Dialog>*/}
+      </Dialog>
 
 
 
@@ -398,33 +367,11 @@ export default function Publication() {
                 </CardActions>
 <Divider/>
 
-                      {/*********commentaires ********/}
+        {/***************************commentaires *****************************************/}
 
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
 
                       <CardContent>
-
-                          <TextField 
-
-                                    fullWidth placeholder="ajouter un commentaire" variant="outlined"  
-                                    className={classes.root}
-                                    style={{ marginBottom:10,}}
-                                    InputProps={{
-                                      endAdornment: 
-                                      <InputAdornment position="end">
-                                        
-                                            <Link
-                                            className={classes.root}
-                                             component="button"
-                                           >
-                                          publier
-                                        </Link>
-
-                                    </InputAdornment>,
-                                    }}
-
-
-                          />
 
                              <Commentaire/>
 
