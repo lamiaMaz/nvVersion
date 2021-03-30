@@ -15,7 +15,7 @@ import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import CloseIcon from '@material-ui/icons/Close';
 import { Button } from 'bootstrap';
-
+import Likes from './likes'
                              {/**css de page */}
 
 const useStyles = makeStyles((theme) => ({
@@ -289,62 +289,7 @@ export default function Publication() {
 
                 <CardActions disableSpacing>
 
-
-
-              
-                                  
-                                 
-                                  
-                                  <MdFavorite  style={{fontSize:'x-large' ,marginLeft:5 }}
-                                   onClick={() => setIsRed(!isRed)} 
-                                  color={isRed ? 'red' : 'black'}
-                                
-                                  />
-
-                                   <a
-                                     className={classes.like}
-                                     component="button"
-                                     onClick={modalOpen} 
-                                    
-                                    >
-                                     100 J'aime</a>
-
-                                
-                              {/**mentions J'aime **/}
-
-                              <Dialog  onClose={modalClose} aria-labelledby="customized-dialog-title" open={open}>
-                                <DialogTitle id="customized-dialog-title" onClose={modalClose}>
-                                 Mentions j'aime
-                                </DialogTitle >
-                                <DialogContent  dividers>
-                                  <List>
-                                    <ListItem >
-
-                                    <ListItemIcon>
-
-                                        <Avatar alt="Remy Sharp" src={process.env.PUBLIC_URL + '/images/d5.jpg'}  />
-                                        
-                                        </ListItemIcon>
-
-                                        <Typography style={{fontSize:16,  }}>  <a >Anna Sthesia</a> <br/></Typography>
-                                        
-
-                                    </ListItem>
-
-
-                                   
-                                   
-                                  </List>
-                                </DialogContent>
-                              
-      </Dialog>
-
-
-
-                             
-
-
-
+                  <Likes/>
 
 
 

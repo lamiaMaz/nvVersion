@@ -19,8 +19,7 @@ function App() {
 
   return (
     <div >
-       {/* <SignUp /> */}
-       {/* {!isSubmitted ? <SignUp submitForm={submitForm} /> : <Signin />} */}
+     
  <BrowserRouter>  
  <div>
  
