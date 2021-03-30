@@ -38,8 +38,16 @@ const useStyles = makeStyles((theme) => ({
           }
     },
     submit: {
-      margin: theme.spacing(3, 0, 2),
-      
+     backgroundColor:'#0777fd',
+     borderRadius:25,
+     paddingTop: 5,
+    paddingBottom: 5,
+    width: 115,
+    paddingLeft: 16,
+    paddingRight: 16,
+    left: 130,
+    marginBottom: 20,
+    marginTop: 20,
     },
     inscription:{
       borderRadius:25,
@@ -64,13 +72,13 @@ export default function Signin({ submitForm }) {
            
              <Container  maxWidth="md" fixed className={classes.container}>
              <div className={classes.content}  >
-                 <Grid  component={Paper} container   xs={12} sm={11} md={12}  >
+                 <Grid  component={Paper} container   xs={12} sm={11} md={12} style={{borderRadius:30}} >
 
 
                  <Hidden only={['sm', 'xs']}>
                      <Grid item xs={false} sm={4} md={6} >
                      <Paper  elevation={0} style={{backgroundColor:'transparent'}} >
-                     <img  src={process.env.PUBLIC_URL + '/images/c.png'}
+                     <img  src={process.env.PUBLIC_URL + '/images/b12.png'}
                           style={{backgroundSize:' cover !important',paddingTop:30, backgroundRepeat: 'no-repeat',
                           position: 'absolute',animation: 'leftRight 5s linear infinite',right: '47%',
                           width: 670,top:80}} />
