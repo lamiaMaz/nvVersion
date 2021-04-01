@@ -7,8 +7,7 @@ import Page from './components/groupes/page'
 import MyProfil from './components/profil/myProfil'
 import Signin from './components/connexion/signin'
 import SignUp from './components/connexion/signUp'
-
-
+import Index from './components/dashboard/Home'
 import { BrowserRouter, Switch, Route} from 'react-router-dom'
 
 function App() {
@@ -32,9 +31,10 @@ function App() {
   <Route path='/myprofil'   component={MyProfil}/>
   <Route path='/signup'   component={SignUp}/>
   <Route path='/'   exact component={Signin}/>
+  <Route path='/dash'   component={Index}/>
 
  </Switch>
- </div>
+ </div> 
  </BrowserRouter>
 
 
